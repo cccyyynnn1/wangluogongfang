@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 24.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="图层_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 60 60" style="enable-background:new 0 0 60 60;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill-rule:evenodd;clip-rule:evenodd;fill:#EFEDFF;}
+	.st1{fill-rule:evenodd;clip-rule:evenodd;fill:#7E69FF;}
+	.st2{fill-rule:evenodd;clip-rule:evenodd;fill:#FFFFFF;}
+	.st3{fill-rule:evenodd;clip-rule:evenodd;fill:#7E69FF;stroke:#ECEAFF;stroke-width:2;}
+	.st4{fill:none;stroke:#FFFFFF;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;}
+</style>
+<title>未知资产</title>
+<g id="全局消息">
+	<g id="工作台-消息提示" transform="translate(-396, -80)">
+		<g id="快捷导航" transform="translate(308, 24)">
+			<g id="未知资产" transform="translate(88, 56)">
+				<path id="矩形" class="st0" d="M22,0h16c12.2,0,22,9.8,22,22v16c0,12.2-9.8,22-22,22H22C9.8,60,0,50.2,0,38V22
+					C0,9.8,9.8,0,22,0z"/>
+				<g transform="translate(17, 15)">
+					<path id="矩形_1_" class="st1" d="M6,0h13.5c3.3,0,6,2.7,6,6v15c0,3.3-2.7,6-6,6H6c-3.3,0-6-2.7-6-6V6C0,2.7,2.7,0,6,0z"/>
+					<path id="矩形_2_" class="st2" d="M4.6,4.5h3c0.8,0,1.5,0.7,1.5,1.5l0,0c0,0.8-0.7,1.5-1.5,1.5h-3C3.8,7.5,3.1,6.8,3.1,6l0,0
+						C3.1,5.2,3.8,4.5,4.6,4.5z"/>
+					<path id="矩形_3_" class="st2" d="M4.6,9.8h6.8c0.8,0,1.5,0.7,1.5,1.5l0,0c0,0.8-0.7,1.5-1.5,1.5H4.6c-0.8,0-1.5-0.7-1.5-1.5
+						l0,0C3.1,10.4,3.8,9.8,4.6,9.8z"/>
+					<g id="帮助_help-3" transform="translate(13.5, 14.25)">
+						<path id="路径" class="st3" d="M8.2,1c2,0,3.8,0.8,5.1,2.1c1.3,1.3,2.1,3.1,2.1,5.1c0,2-0.8,3.8-2.1,5.1s-3.1,2.1-5.1,2.1
+							c-2,0-3.8-0.8-5.1-2.1C1.8,12.1,1,10.3,1,8.2c0-2,0.8-3.8,2.1-5.1C4.4,1.8,6.2,1,8.2,1z"/>
+						<g id="编组-4" transform="translate(6.6, 4.95)">
+							<path id="路径_1_" class="st4" d="M1.9,5V3.7c1,0,1.9-0.8,1.9-1.9S2.9,0,1.9,0S0,0.8,0,1.9"/>
+							<path id="路径_2_" class="st2" d="M1.9,7.8c0.4,0,0.8-0.3,0.8-0.8S2.3,6.2,1.9,6.2S1.1,6.6,1.1,7S1.4,7.8,1.9,7.8z"/>
+						</g>
+					</g>
+				</g>
+			</g>
+		</g>
+	</g>
+</g>
+</svg>

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 24.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="图层_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 44 56" style="enable-background:new 0 0 44 56;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:url(#形状_2_);stroke:url(#形状_3_);stroke-width:2;}
+	.st1{fill:#FFFFFF;}
+	.st2{filter:url(#Adobe_OpacityMaskFilter);}
+	.st3{fill-rule:evenodd;clip-rule:evenodd;fill:#FFFFFF;}
+	.st4{opacity:0.3003;mask:url(#mask-4_1_);}
+	.st5{filter:url(#filter-7);}
+	.st6{fill-rule:evenodd;clip-rule:evenodd;}
+	.st7{fill-rule:evenodd;clip-rule:evenodd;fill:url(#path-6_2_);}
+</style>
+<filter  filterUnits="objectBoundingBox" height="125.7%" id="filter-7" width="133.3%" x="-16.7%" y="-9.2%">
+	<feOffset  dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+	<feGaussianBlur  in="shadowOffsetOuter1" result="shadowBlurOuter1" stdDeviation="2"></feGaussianBlur>
+	
+		<feColorMatrix  in="shadowBlurOuter1" type="matrix" values="0 0 0 0 0.728173297   0 0 0 0 0.181739044   0 0 0 0 0.181739044  0 0 0 0.5 0">
+		</feColorMatrix>
+</filter>
+<title>危机icon</title>
+<g id="页面-1">
+	<g id="初级聚合告警-详情-展开4" transform="translate(-281, -110)">
+		<g id="新增宽带配置" transform="translate(220, 0)">
+			<g id="编组-9" transform="translate(30, 60)">
+				<g id="编组" transform="translate(25, 50)">
+					<g id="危机icon" transform="translate(7, 2)">
+						<g id="anquan-3">
+							
+								<linearGradient id="形状_2_" gradientUnits="userSpaceOnUse" x1="-26.8571" y1="75.5962" x2="-26.8571" y2="74.5962" gradientTransform="matrix(42 0 0 -52 1149 3931)">
+								<stop  offset="0" style="stop-color:#FF5656"/>
+								<stop  offset="1" style="stop-color:#E92323"/>
+							</linearGradient>
+							
+								<linearGradient id="形状_3_" gradientUnits="userSpaceOnUse" x1="-26.9888" y1="75.7231" x2="-26.3364" y2="74.7231" gradientTransform="matrix(42 0 0 -52 1149 3931)">
+								<stop  offset="0" style="stop-color:#FFBFBF"/>
+								<stop  offset="0.5123" style="stop-color:#FFA58A"/>
+								<stop  offset="1" style="stop-color:#FA4444"/>
+							</linearGradient>
+							<path id="形状" class="st0" d="M39.6,6.5c0,0-3.1,0-8.2-1.9c-5.5-1.9-8.8-3.9-8.8-3.9L21,0l-1.4,0.7c0,0-3.5,2-8.8,3.9
+								C5.5,6.3,2.6,6.5,2.6,6.5L0,6.7v25.6C0,41.8,18.6,52,21,52c2.2,0,21-10.2,21-19.7V6.7L39.6,6.5z"/>
+						</g>
+						<g id="warning-full" transform="translate(7.7273, 10.2857)">
+							<path id="形状_1_" class="st1" d="M27.8,21.4l-6.1-10.3L15.5,0.9C15.2,0.3,14.6,0,14,0c-0.6,0-1.2,0.3-1.5,0.9L6.4,11.1
+								L0.2,21.4C-0.4,22.6,0.4,24,1.8,24h24.5C27.6,24,28.4,22.6,27.8,21.4z M12.5,19.4v-1.5c0-0.4,0.3-0.7,0.8-0.7h1.5
+								c0.4,0,0.8,0.3,0.8,0.7v1.5c0,0.4-0.3,0.7-0.8,0.7h-1.5C12.8,20.1,12.5,19.8,12.5,19.4L12.5,19.4z M15.5,9.1l-0.4,7.2
+								c0,0.1-0.1,0.2-0.2,0.2H13c-0.1,0-0.2-0.1-0.2-0.2l-0.4-7.2c0-0.2,0.2-0.4,0.4-0.4h2.2C15.3,8.7,15.5,8.9,15.5,9.1z"/>
+						</g>
+						<g id="矩形">
+							<g id="蒙版">
+							</g>
+							<defs>
+								<filter id="Adobe_OpacityMaskFilter" filterUnits="userSpaceOnUse" x="-7" y="-5" width="56" height="69">
+									<feColorMatrix  type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1 0"/>
+								</filter>
+							</defs>
+							<mask maskUnits="userSpaceOnUse" x="-7" y="-5" width="56" height="69" id="mask-4_1_">
+								<g class="st2">
+									<path id="path-3_1_" class="st3" d="M39.6,6.5c0,0-3.1,0-8.2-1.9c-5.5-1.9-8.8-3.9-8.8-3.9L21,0l-1.4,0.7
+										c0,0-3.5,2-8.8,3.9C5.5,6.3,2.6,6.5,2.6,6.5L0,6.7v25.6C0,41.8,18.6,52,21,52c2.2,0,21-10.2,21-19.7V6.7L39.6,6.5z"/>
+								</g>
+							</mask>
+							<g class="st4">
+								<g class="st5">
+									<polygon id="path-6_2_" class="st6" points="42,0 0,0 0,54.6 									"/>
+								</g>
+								<g>
+									
+										<linearGradient id="path-6_2_" gradientUnits="userSpaceOnUse" x1="-26.8869" y1="75.1589" x2="-26.5716" y2="74.6964" gradientTransform="matrix(42 0 0 -54.5757 1149 4126.7568)">
+										<stop  offset="0" style="stop-color:#FFFFFF"/>
+										<stop  offset="1" style="stop-color:#FF9797;stop-opacity:0.1756"/>
+									</linearGradient>
+									<polygon id="path-6_1_" class="st7" points="42,0 0,0 0,54.6 									"/>
+								</g>
+							</g>
+						</g>
+					</g>
+				</g>
+			</g>
+		</g>
+	</g>
+</g>
+</svg>

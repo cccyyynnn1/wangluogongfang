@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 24.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="图层_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 44 44" style="enable-background:new 0 0 44 44;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill-rule:evenodd;clip-rule:evenodd;fill:#EBEAFF;}
+	.st1{fill-rule:evenodd;clip-rule:evenodd;fill:url(#形状_1_);stroke:url(#形状_2_);}
+</style>
+<title>授权到期icon</title>
+<g id="全局消息">
+	<g id="全局消息211" transform="translate(-456, -517)">
+		<g id="新增宽带配置" transform="translate(420, 120)">
+			<g id="编组-12" transform="translate(20, 384)">
+				<g id="授权到期icon" transform="translate(16, 13)">
+					<path id="矩形" class="st0" d="M16,0h12c8.8,0,16,7.2,16,16v12c0,8.8-7.2,16-16,16H16C7.2,44,0,36.8,0,28V16
+						C0,7.2,7.2,0,16,0z"/>
+					<g id="B-shijian" transform="translate(12, 12)">
+						
+							<linearGradient id="形状_1_" gradientUnits="userSpaceOnUse" x1="-84.4474" y1="106.9372" x2="-84.4474" y2="105.9797" gradientTransform="matrix(19 0 0 -19 1614.5 2032.5)">
+							<stop  offset="0" style="stop-color:#D0D4FF"/>
+							<stop  offset="1" style="stop-color:#614CFA"/>
+						</linearGradient>
+						
+							<linearGradient id="形状_2_" gradientUnits="userSpaceOnUse" x1="-84.4474" y1="106.9456" x2="-84.4474" y2="105.9956" gradientTransform="matrix(19 0 0 -19 1614.5 2032.5)">
+							<stop  offset="0" style="stop-color:#D6D8FF"/>
+							<stop  offset="1" style="stop-color:#4D37F5"/>
+						</linearGradient>
+						<path id="形状" class="st1" d="M10,0.5c2.5,0,4.9,1,6.7,2.8c1.9,1.9,2.8,4.3,2.8,6.7c0,2.4-0.9,4.9-2.8,6.7
+							c-1.8,1.8-4.2,2.8-6.7,2.8c-2.5,0-4.9-1-6.7-2.8c-1.8-1.8-2.8-4.2-2.8-6.7c0-2.5,1-4.9,2.8-6.7C5.1,1.5,7.5,0.5,10,0.5z
+							 M10,3.6C9.6,3.6,9.3,3.8,9,4c-0.3,0.3-0.4,0.6-0.4,1v5.8c0,0.3,0.1,0.8,1.2,1.5l4.3,2.3c0.4,0,0.8-0.3,1-0.7
+							c0.2-0.3,0.2-0.7,0.1-1.1c-0.1-0.3-0.4-0.7-0.7-0.9l-3.1-1.8v-5c0-0.4-0.2-0.8-0.4-1C10.8,3.8,10.4,3.6,10,3.6z"/>
+					</g>
+				</g>
+			</g>
+		</g>
+	</g>
+</g>
+</svg>

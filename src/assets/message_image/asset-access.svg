@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 24.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="图层_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 60 60" style="enable-background:new 0 0 60 60;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill-rule:evenodd;clip-rule:evenodd;fill:#EFEDFF;}
+	.st1{fill-rule:evenodd;clip-rule:evenodd;fill:#7E69FF;}
+	.st2{fill-rule:evenodd;clip-rule:evenodd;fill:#FFFFFF;}
+	.st3{fill-rule:evenodd;clip-rule:evenodd;fill:#7B69F6;stroke:#ECEAFF;stroke-width:2;}
+	.st4{fill-rule:evenodd;clip-rule:evenodd;fill:#7E69FF;stroke:#ECEAFF;stroke-width:2;}
+</style>
+<title>资产访问</title>
+<g id="全局消息">
+	<g id="工作台-消息提示" transform="translate(-1202, -80)">
+		<g id="快捷导航" transform="translate(308, 24)">
+			<g id="_x31_" transform="translate(888, 56)">
+				<g id="资产访问" transform="translate(6, 0)">
+					<path id="矩形" class="st0" d="M22,0h16c12.2,0,22,9.8,22,22v16c0,12.2-9.8,22-22,22H22C9.8,60,0,50.2,0,38V22
+						C0,9.8,9.8,0,22,0z"/>
+					<g transform="translate(18, 16)">
+						<path id="矩形_1_" class="st1" d="M6,0h10.7c0.5,0,1,0.2,1.4,0.5l5.4,4.9c0.4,0.4,0.6,0.9,0.6,1.5v14c0,3.3-2.7,6-6,6H6
+							c-3.3,0-6-2.7-6-6V6C0,2.7,2.7,0,6,0z"/>
+						<path id="矩形_2_" class="st2" d="M4.3,4.2h2.8c0.8,0,1.4,0.6,1.4,1.4l0,0c0,0.8-0.6,1.4-1.4,1.4H4.3
+							c-0.8,0-1.4-0.6-1.4-1.4l0,0C2.9,4.9,3.5,4.2,4.3,4.2z"/>
+						<path id="矩形_3_" class="st2" d="M4.3,9.2h6.4c0.8,0,1.4,0.6,1.4,1.4v0c0,0.8-0.6,1.4-1.4,1.4H4.3c-0.8,0-1.4-0.6-1.4-1.4
+							v0C2.9,9.8,3.5,9.2,4.3,9.2z"/>
+						<g id="编组-6" transform="translate(12.1192, 14.1626)">
+							<path id="形状结合" class="st3" d="M2.5,1h12C15.3,1,16,1.7,16,2.5v2.1c0,0.8-0.7,1.5-1.5,1.5h-12C1.7,6.1,1,5.4,1,4.6
+								V2.5C1,1.7,1.7,1,2.5,1z"/>
+							<path id="矩形_4_" class="st2" d="M3.3,2.8h0.4c0.3,0,0.5,0.2,0.5,0.5v0.4C4.2,4,4,4.2,3.7,4.2H3.3C3.1,4.2,2.8,4,2.8,3.7
+								V3.3C2.8,3.1,3.1,2.8,3.3,2.8z"/>
+							<path id="矩形_5_" class="st2" d="M6.2,2.8h0.4c0.3,0,0.5,0.2,0.5,0.5v0.4c0,0.3-0.2,0.5-0.5,0.5H6.2
+								C5.9,4.2,5.7,4,5.7,3.7V3.3C5.7,3.1,5.9,2.8,6.2,2.8z"/>
+						</g>
+						<path id="形状结合_1_" class="st4" d="M14.6,23.7h12c0.8,0,1.5,0.7,1.5,1.5v2.1c0,0.8-0.7,1.5-1.5,1.5h-12
+							c-0.8,0-1.5-0.7-1.5-1.5v-2.1C13.1,24.3,13.8,23.7,14.6,23.7z"/>
+						<path id="矩形_6_" class="st2" d="M15.5,25.5h0.4c0.3,0,0.5,0.2,0.5,0.5v0.4c0,0.3-0.2,0.5-0.5,0.5h-0.4
+							c-0.3,0-0.5-0.2-0.5-0.5V26C15,25.7,15.2,25.5,15.5,25.5z"/>
+						<path id="矩形_7_" class="st2" d="M18.3,25.5h0.4c0.3,0,0.5,0.2,0.5,0.5v0.4c0,0.3-0.2,0.5-0.5,0.5h-0.4
+							c-0.3,0-0.5-0.2-0.5-0.5V26C17.8,25.7,18,25.5,18.3,25.5z"/>
+					</g>
+				</g>
+			</g>
+		</g>
+	</g>
+</g>
+</svg>

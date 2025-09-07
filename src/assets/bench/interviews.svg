@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="60px" height="60px" viewBox="0 0 60 60" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>资产访问</title>
+    <g id="全局消息" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="工作台-消息提示" transform="translate(-1202, -80)">
+            <g id="快捷导航" transform="translate(308, 24)">
+                <g id="1" transform="translate(888, 56)">
+                    <g id="资产访问" transform="translate(6, 0)">
+                        <rect id="矩形" fill="#EFEDFF" x="0" y="0" width="60" height="60" rx="22"></rect>
+                        <g transform="translate(18, 16)">
+                            <path d="M6,0 L16.7062507,2.66453526e-15 C17.2073591,2.57248315e-15 17.6902098,0.188113091 18.059248,0.527112201 L23.4294394,5.46017925 C23.8417608,5.83893833 24.0764422,6.37318551 24.0764422,6.93306705 L24.0764422,20.9089648 C24.0764422,24.2226733 21.3901507,26.9089648 18.0764422,26.9089648 L6,26.9089648 C2.6862915,26.9089648 1.87739444e-15,24.2226733 0,20.9089648 L-8.8817842e-16,6 C-1.29399067e-15,2.6862915 2.6862915,4.05812251e-16 6,0 Z" id="矩形" fill="#7E69FF"></path>
+                            <rect id="矩形" fill="#FFFFFF" x="2.91345183" y="4.24878392" width="5.66504523" height="2.83252261" rx="1.41626131"></rect>
+                            <rect id="矩形" fill="#FFFFFF" x="2.91345183" y="9.20569849" width="9.20569849" height="2.83252261" rx="1.41626131"></rect>
+                            <g id="编组-6" transform="translate(12.1192, 14.1626)">
+                                <rect id="形状结合" stroke="#ECEAFF" stroke-width="2" fill="#7B69F6" x="1" y="1" width="14.9951357" height="5.08130653" rx="1.5"></rect>
+                                <rect id="矩形" fill="#FFFFFF" x="2.83252261" y="2.83252261" width="1.41626131" height="1.41626131" rx="0.5"></rect>
+                                <rect id="矩形" fill="#FFFFFF" x="5.66504523" y="2.83252261" width="1.41626131" height="1.41626131" rx="0.5"></rect>
+                            </g>
+                            <rect id="形状结合" stroke="#ECEAFF" stroke-width="2" fill="#7E69FF" x="13.1191503" y="23.6601809" width="14.9951357" height="5.08130653" rx="1.5"></rect>
+                            <rect id="矩形" fill="#FFFFFF" x="14.9516729" y="25.4927035" width="1.41626131" height="1.41626131" rx="0.5"></rect>
+                            <rect id="矩形" fill="#FFFFFF" x="17.7841955" y="25.4927035" width="1.41626131" height="1.41626131" rx="0.5"></rect>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 24.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="图层_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 44 44" style="enable-background:new 0 0 44 44;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill-rule:evenodd;clip-rule:evenodd;fill:#EBEAFF;}
+	.st1{fill-rule:evenodd;clip-rule:evenodd;fill:url(#形状_2_);}
+	.st2{fill-rule:evenodd;clip-rule:evenodd;fill:url(#形状_3_);}
+</style>
+<title>系统状态告警icon</title>
+<g id="全局消息">
+	<g id="全局消息211" transform="translate(-456, -280)">
+		<g id="新增宽带配置" transform="translate(420, 120)">
+			<g id="编组-12" transform="translate(20, 147)">
+				<g id="系统状态告警icon" transform="translate(16, 13)">
+					<path id="矩形" class="st0" d="M16,0h12c8.8,0,16,7.2,16,16v12c0,8.8-7.2,16-16,16H16C7.2,44,0,36.8,0,28V16
+						C0,7.2,7.2,0,16,0z"/>
+					<g id="yichang-2" transform="translate(11, 12)">
+						
+							<linearGradient id="形状_2_" gradientUnits="userSpaceOnUse" x1="-83.804" y1="107.1399" x2="-83.804" y2="106.1824" gradientTransform="matrix(20.8333 0 0 -20 1756.3333 2143)">
+							<stop  offset="0" style="stop-color:#B7ABFF"/>
+							<stop  offset="1" style="stop-color:#614CFA"/>
+						</linearGradient>
+						<path id="形状" class="st1" d="M9.6,14.3c0-1.9,0.8-3.7,2-4.9V2.1h1.5v6.2c0.8-0.4,1.6-0.7,2.5-0.8V4.2h1.5v3.2
+							c1.4,0.1,2.6,0.7,3.7,1.5V1.5c0-0.4-0.1-0.7-0.4-1c-0.3-0.3-0.6-0.4-1-0.4H1.4C0.6,0,0,0.7,0,1.5v13.3C0,15,0,15.3,0.2,15.6
+							c0.2,0.2,0.5,0.3,0.8,0.2h6.3v2.1H2.1V20h10.3C10.7,18.7,9.6,16.6,9.6,14.3z M3.7,13.7V9.4h1.5v4.2H3.7z M9.2,13.7H7.7V6.3
+							h1.5V13.7z"/>
+						
+							<linearGradient id="形状_3_" gradientUnits="userSpaceOnUse" x1="-80.9" y1="104.3899" x2="-80.9" y2="103.4324" gradientTransform="matrix(11.6667 0 0 -11.6667 960.5 1226.3334)">
+							<stop  offset="0" style="stop-color:#B7ABFF"/>
+							<stop  offset="1" style="stop-color:#614CFA"/>
+						</linearGradient>
+						<path id="形状_1_" class="st2" d="M16.7,8.3c-3.2,0-5.8,2.6-5.8,5.8s2.6,5.8,5.8,5.8s5.8-2.6,5.8-5.8S19.9,8.3,16.7,8.3
+							L16.7,8.3z M16.7,18c-0.5,0-0.8-0.4-0.8-0.8c0-0.5,0.4-0.8,0.8-0.8c0.5,0,0.8,0.4,0.8,0.8C17.5,17.6,17.1,18,16.7,18z
+							 M17.3,15c0,0.2-0.2,0.4-0.4,0.4h-0.5c-0.2,0-0.4-0.2-0.4-0.4l-0.2-4.3c0-0.1,0.1-0.2,0.2-0.2h1.3c0.1,0,0.2,0.1,0.2,0.2
+							L17.3,15L17.3,15z"/>
+					</g>
+				</g>
+			</g>
+		</g>
+	</g>
+</g>
+</svg>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 24.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="图层_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 60 60" style="enable-background:new 0 0 60 60;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill-rule:evenodd;clip-rule:evenodd;fill:#EFEDFF;}
+	.st1{fill-rule:evenodd;clip-rule:evenodd;fill:#7E69FF;}
+	.st2{fill-rule:evenodd;clip-rule:evenodd;fill:#7E69FF;stroke:#ECEAFF;stroke-width:2;}
+	.st3{fill-rule:evenodd;clip-rule:evenodd;fill:#ECEAFF;}
+	.st4{fill-rule:evenodd;clip-rule:evenodd;fill:#FFFFFF;}
+</style>
+<title>攻击透视</title>
+<g id="全局消息">
+	<g id="工作台-消息提示" transform="translate(-778, -80)">
+		<g id="快捷导航" transform="translate(308, 24)">
+			<g id="攻击透视" transform="translate(470, 56)">
+				<path id="矩形" class="st0" d="M22,0h16c12.2,0,22,9.8,22,22v16c0,12.2-9.8,22-22,22H22C9.8,60,0,50.2,0,38V22
+					C0,9.8,9.8,0,22,0z"/>
+				<g transform="translate(11, 10)">
+					<path id="三角形" class="st1" d="M23.9,9l8.3,14.5c1.7,2.9,0.7,6.5-2.2,8.2c-0.9,0.5-1.9,0.8-3,0.8H10.4c-3.3,0-6-2.7-6-6
+						c0-1,0.3-2.1,0.8-3L13.5,9c1.7-2.9,5.3-3.9,8.2-2.2C22.6,7.4,23.4,8.1,23.9,9z"/>
+					<path id="三角形_1_" class="st2" d="M18.6,31.7c1.3,0.2,2.6,0,3.7-0.8c0.5-0.3,0.9-0.8,1.3-1.3l6.5-9.4
+						c0.8-1.1,1-2.5,0.8-3.7c-0.2-1.3-0.9-2.4-2.1-3.2C28,12.7,27,12.4,26,12.4H13c-1.4,0-2.6,0.6-3.5,1.5C8.6,14.7,8,16,8,17.4
+						c0,1,0.3,2,0.9,2.8l6.5,9.4C16.2,30.7,17.3,31.5,18.6,31.7z"/>
+					
+						<g id="编组-5" transform="translate(19.4959, 34.1178) rotate(1) translate(-19.4959, -34.1178)translate(14.6219, 29.2438)">
+						<polygon id="三角形_2_" class="st3" points="4.9,0 0,9.7 4.9,7.2 9.7,9.7 						"/>
+						<polygon id="三角形_3_" class="st1" points="4.9,2.1 2.1,7.6 4.9,6.2 7.7,7.6 						"/>
+					</g>
+					
+						<g id="编组-5_1_" transform="translate(7.2966, 13.8236) rotate(115) translate(-7.2966, -13.8236)translate(2.4227, 8.9497)">
+						<polygon id="三角形_4_" class="st3" points="4.9,0 0,9.7 4.9,7.2 9.7,9.7 						"/>
+						<polygon id="三角形_5_" class="st1" points="4.9,2.1 2.1,7.6 4.9,6.2 7.7,7.6 						"/>
+					</g>
+					
+						<g id="编组-5_2_" transform="translate(32.4788, 13.8236) scale(-1, 1) rotate(115) translate(-32.4788, -13.8236)translate(27.6048, 8.9497)">
+						<polygon id="三角形_6_" class="st3" points="4.9,0 0,9.7 4.9,7.2 9.7,9.7 						"/>
+						<polygon id="三角形_7_" class="st1" points="4.9,2.1 2.1,7.6 4.9,6.2 7.7,7.6 						"/>
+					</g>
+					<g id="duizhan2x" transform="translate(14.6219, 16.2466)">
+						<path id="形状" class="st4" d="M9.5,0.9l0,0.5c0,0.3-0.1,0.5-0.3,0.7L6.7,4.7l0,0l1.4,1.5l0.4-0.4c0.2-0.2,0.5-0.2,0.7,0
+							c0,0,0,0,0,0c0.2,0.2,0.2,0.5,0,0.7L8.3,7.5l0,0L9.7,9L9,9.7L7.6,8.3L6.7,9.2C6.5,9.4,6.2,9.4,6,9.2c0,0,0,0,0,0
+							C5.8,9,5.8,8.7,6,8.4l0.4-0.4l0,0L4.9,6.6L3.4,8.1l0.4,0.4C4,8.7,4,9,3.8,9.2c-0.2,0.2-0.5,0.2-0.7,0c0,0,0,0,0,0L2.2,8.3l0,0
+							L0.7,9.7L0,9l1.4-1.5L0.5,6.6c-0.2-0.2-0.2-0.5,0-0.7c0.2-0.2,0.5-0.2,0.7,0c0,0,0,0,0,0l0.4,0.4l0,0l1.4-1.5L0.6,2.1
+							C0.4,2,0.3,1.7,0.3,1.5l0-0.5C0.3,0.4,0.7,0,1.2,0c0,0,0,0,0,0l0.5,0c0.3,0,0.5,0.1,0.7,0.3l2.5,2.6l0,0l2.5-2.6
+							C7.6,0.1,7.8,0,8.1,0l0.5,0C9.1,0,9.5,0.4,9.5,0.9z"/>
+					</g>
+				</g>
+			</g>
+		</g>
+	</g>
+</g>
+</svg>

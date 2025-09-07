@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 24.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="图层_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 60 60" style="enable-background:new 0 0 60 60;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill-rule:evenodd;clip-rule:evenodd;fill:#EFEDFF;}
+	.st1{fill-rule:evenodd;clip-rule:evenodd;fill:#7E69FF;}
+	.st2{fill-rule:evenodd;clip-rule:evenodd;fill:#FFFFFF;}
+	.st3{fill-rule:evenodd;clip-rule:evenodd;fill:#7E69FF;stroke:#ECEAFF;stroke-width:2;}
+</style>
+<title>站点资产</title>
+<g id="全局消息">
+	<g id="工作台-消息提示" transform="translate(-523, -80)">
+		<g id="快捷导航" transform="translate(308, 24)">
+			<g id="站点资产" transform="translate(215, 56)">
+				<path id="矩形" class="st0" d="M22,0h16c12.2,0,22,9.8,22,22v16c0,12.2-9.8,22-22,22H22C9.8,60,0,50.2,0,38V22
+					C0,9.8,9.8,0,22,0z"/>
+				<g transform="translate(15, 15)">
+					<path id="矩形_1_" class="st1" d="M5.3,8l7.2-5.9c1.5-1.2,3.6-1.2,5.1,0L24.7,8c1.4,1.1,2.1,2.8,2.1,4.6v10.1
+						c0,3.3-2.7,6-6,6H9.2c-3.3,0-6-2.7-6-6V12.7C3.2,10.9,4,9.2,5.3,8z"/>
+					<g id="站点加速_whole-site-accelerator-2" transform="translate(10.3947, 6.6876)">
+						<path id="形状结合" class="st2" d="M3.9,0c0.9,0,1.6,0.7,1.6,1.6S4.8,3.2,3.9,3.2c-0.1,0-0.1,0-0.2,0l-1.1,2
+							C3,5.4,3.2,5.8,3.2,6.3h2.4c0-0.9,0.7-1.6,1.6-1.6s1.6,0.7,1.6,1.6S8,7.9,7.1,7.9c-0.1,0-0.1,0-0.2,0l-1.1,2
+							c0.3,0.3,0.5,0.7,0.5,1.2c0,0.9-0.7,1.6-1.6,1.6s-1.6-0.7-1.6-1.6s0.7-1.6,1.6-1.6c0.1,0,0.2,0,0.3,0l1.1-1.9
+							C6,7.5,5.9,7.3,5.7,7.1l-2.8,0C2.7,7.6,2.2,7.9,1.6,7.9C0.7,7.9,0,7.2,0,6.3s0.7-1.6,1.6-1.6c0.1,0,0.2,0,0.3,0L3,2.9
+							C2.6,2.6,2.4,2.1,2.4,1.6C2.4,0.7,3.1,0,3.9,0z"/>
+					</g>
+					<path id="矩形_2_" class="st3" d="M5.3,19.5c0.8,0,1.6,0.3,2.2,0.9l1.7,1.8c0.8,0.8,1.8,1.2,2.9,1.2h5.6c1,0,2-0.4,2.7-1.1
+						l2.2-2.1c0.6-0.5,1.3-0.8,2-0.8H27c0.6,0,1.1,0.2,1.4,0.6S29,21,29,21.5v5.8c0,0.6-0.2,1.1-0.6,1.4s-0.9,0.6-1.4,0.6H3
+						c-0.6,0-1.1-0.2-1.4-0.6S1,27.9,1,27.4v-5.8c0-0.6,0.2-1.1,0.6-1.4s0.9-0.6,1.4-0.6H5.3z"/>
+				</g>
+			</g>
+		</g>
+	</g>
+</g>
+</svg>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 24.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="图层_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 48 44" style="enable-background:new 0 0 48 44;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:url(#Rectangle_2_);}
+	.st1{fill:url(#Rectangle_3_);}
+	.st2{fill:#FFFFFF;fill-opacity:0.9;}
+</style>
+<title>上传知识icon</title>
+<g id="资产管理">
+	<g id="知识-上传知识" transform="translate(-936, -365)">
+		<g id="侧边弹窗" transform="translate(536, 190)">
+			<g id="表单标准块_x2F_default_x2F_left" transform="translate(30, 105)">
+				<g id="Group-130" transform="translate(246, 70)">
+					<g id="上传知识icon" transform="translate(124, 0)">
+						
+							<linearGradient id="Rectangle_2_" gradientUnits="userSpaceOnUse" x1="-72.9829" y1="121.4741" x2="-72.3399" y2="119.8423" gradientTransform="matrix(39.0795 0 0 -37.629 2860.7637 4551.3667)">
+							<stop  offset="1.494550e-02" style="stop-color:#6655E7"/>
+							<stop  offset="1" style="stop-color:#9081F6"/>
+						</linearGradient>
+						<path id="Rectangle" class="st0" d="M4.8,33.4c0,1.1,0.4,2.2,1.2,2.9s1.8,1.2,2.9,1.2h7.7c0.6,0,1.2-0.1,1.7-0.4
+							c0.5-0.3,1-0.6,1.4-1.1l2-2.4c0.4-0.5,0.9-0.8,1.4-1.1s1.1-0.4,1.7-0.4h14.9c1.1,0,2.2-0.5,2.9-1.2s1.2-1.8,1.2-2.9v-24
+							c0-1.1-0.4-2.2-1.2-2.9S40.9,0,39.8,0H8.9C7.8,0,6.8,0.5,6,1.2S4.8,3.1,4.8,4.2V33.4z"/>
+						
+							<linearGradient id="Rectangle_3_" gradientUnits="userSpaceOnUse" x1="-73.3024" y1="121.0727" x2="-72.7394" y2="120.1203" gradientTransform="matrix(48.0006 0 0 -39 3525.0479 4725)">
+							<stop  offset="0" style="stop-color:#BEB5FF"/>
+							<stop  offset="1" style="stop-color:#6655E7"/>
+						</linearGradient>
+						<path id="Rectangle_1_" class="st1" d="M0,10.6c0-1.5,0.6-2.9,1.6-3.9S4,5,5.5,5h9.1c0.7,0,1.4,0.1,2.1,0.4
+							c0.7,0.3,1.3,0.7,1.8,1.2l2.3,2.3c0.5,0.5,1.1,0.9,1.8,1.2s1.4,0.4,2.1,0.4h17.9c1.5,0,2.9,0.6,3.9,1.6S48,14.6,48,16v22.4
+							c0,0.7-0.1,1.4-0.4,2.1s-0.7,1.3-1.2,1.8s-1.1,0.9-1.8,1.2S43.2,44,42.5,44h-37c-1.5,0-2.9-0.6-3.9-1.6S0,39.9,0,38.4V10.6z"
+							/>
+						<path id="Path-5" class="st2" d="M18.2,27.9c-0.3,0-0.5-0.1-0.7-0.2c-0.2-0.1-0.4-0.3-0.5-0.6c-0.1-0.2-0.1-0.5-0.1-0.8
+							c0-0.3,0.2-0.5,0.3-0.7l6.1-6.4c0.1-0.1,0.3-0.2,0.5-0.3s0.4-0.1,0.5-0.1c0.2,0,0.4,0,0.5,0.1s0.3,0.2,0.5,0.3l6.1,6.4
+							c0.2,0.2,0.3,0.4,0.3,0.7s0,0.5-0.1,0.8c-0.1,0.2-0.3,0.4-0.5,0.6s-0.5,0.2-0.7,0.2H28c-0.2,0-0.4,0.1-0.5,0.2
+							c-0.1,0.1-0.2,0.3-0.2,0.5v2.6c0,0.2,0,0.4-0.1,0.5c-0.1,0.2-0.2,0.3-0.3,0.4c-0.1,0.1-0.3,0.2-0.4,0.3s-0.3,0.1-0.5,0.1h-3.2
+							c-0.4,0-0.7-0.1-1-0.4c-0.3-0.3-0.4-0.6-0.4-1v-2.6c0-0.2-0.1-0.4-0.2-0.5c-0.1-0.1-0.3-0.2-0.5-0.2L18.2,27.9z"/>
+					</g>
+				</g>
+			</g>
+		</g>
+	</g>
+</g>
+</svg>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="60px" height="60px" viewBox="0 0 60 60" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>未知资产</title>
+    <g id="全局消息" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="工作台-消息提示" transform="translate(-396, -80)">
+            <g id="快捷导航" transform="translate(308, 24)">
+                <g id="未知资产" transform="translate(88, 56)">
+                    <rect id="矩形" fill="#EFEDFF" x="0" y="0" width="60" height="60" rx="22"></rect>
+                    <g transform="translate(17, 15)">
+                        <rect id="矩形" fill="#7E69FF" x="0" y="0" width="25.5" height="27" rx="6"></rect>
+                        <rect id="矩形" fill="#FFFFFF" x="3.08571429" y="4.5" width="6" height="3" rx="1.5"></rect>
+                        <rect id="矩形" fill="#FFFFFF" x="3.08571429" y="9.75" width="9.75" height="3" rx="1.5"></rect>
+                        <g id="帮助_help-3" transform="translate(13.5, 14.25)">
+                            <path d="M8.25,1 C10.2520155,1 12.0645151,1.81148694 13.3765056,3.12347012 C14.6885029,4.43548193 15.5,6.24798229 15.5,8.25 C15.5,10.252015 14.6885053,12.0645137 13.3765095,13.3765095 C12.0645137,14.6885053 10.252015,15.5 8.25,15.5 C6.24798229,15.5 4.43548193,14.6885029 3.12347598,13.3765114 C1.81148694,12.0645151 1,10.2520155 1,8.25 C1,6.24798176 1.81148934,4.43548048 3.12346817,3.12347989 C4.43548048,1.81148934 6.24798176,1 8.25,1 Z" id="路径" stroke="#ECEAFF" stroke-width="2" fill="#7E69FF"></path>
+                            <g id="编组-4" transform="translate(6.6, 4.95)">
+                                <path d="M1.875,5 L1.875,3.75 C2.91053125,3.75 3.75,2.91053125 3.75,1.875 C3.75,0.83946875 2.91053125,0 1.875,0 C0.83946875,0 0,0.83946875 0,1.875" id="路径" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path>
+                                <path d="M1.875,7.8125 C2.30646875,7.8125 2.65625,7.46271875 2.65625,7.03125 C2.65625,6.59978125 2.30646875,6.25 1.875,6.25 C1.44353125,6.25 1.09375,6.59978125 1.09375,7.03125 C1.09375,7.46271875 1.44353125,7.8125 1.875,7.8125 Z" id="路径" fill="#FFFFFF"></path>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
