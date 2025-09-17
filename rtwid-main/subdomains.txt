@@ -1,0 +1,11 @@
+www
+mail
+ftp
+admin
+test
+dev
+api
+blog
+shop
+support
+map

@@ -1,0 +1,16 @@
+
+{
+  "api_key": "363ea8968f9880b72079d0636045fff8f9e209cdd33573e666791d5398b200e1",
+  "proxy": "http://127.0.0.1:8080",
+  "subdomains": ["www",
+                 "mail",
+                 "ftp",
+                 "admin",
+                 "test",
+                 "dev",
+                 "api",
+                 "blog",
+                 "shop",
+                 "support"
+  ]
+}
