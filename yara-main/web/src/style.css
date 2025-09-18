@@ -1,0 +1,91 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+}
+
+@layer components {
+  .gradient-bg {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  }
+  
+  .card-hover {
+    transition: all 0.3s ease;
+  }
+  
+  .card-hover:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  }
+  
+  .status-indicator {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    display: inline-block;
+  }
+  
+  .status-healthy {
+    background-color: #10b981;
+  }
+  
+  .status-warning {
+    background-color: #f59e0b;
+  }
+  
+  .status-error {
+    background-color: #ef4444;
+  }
+  
+  .log-entry {
+    margin-bottom: 4px;
+    padding: 2px 0;
+  }
+  
+  .log-entry.info {
+    color: #10b981;
+  }
+  
+  .log-entry.warning {
+    color: #f59e0b;
+  }
+  
+  .log-entry.error {
+    color: #ef4444;
+  }
+  
+  .refresh-success {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(16, 185, 129, 0.9);
+    color: white;
+    padding: 12px 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease-in-out;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 500;
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  
+  .refresh-success.show {
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  .refresh-success i {
+    font-size: 16px;
+  }
+} 

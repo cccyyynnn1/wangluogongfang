@@ -1,0 +1,3301 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Yara 安全服务 API",
+    "description": "基于 Yara 规则的安全扫描和系统监控服务 API 文档",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8081",
+      "description": "本地开发环境 - 后端API服务"
+    },
+    {
+      "url": "http://localhost:3001",
+      "description": "本地开发环境 - 前端Web界面"
+    }
+  ],
+  "paths": {
+    "/api/health": {
+      "get": {
+        "summary": "健康检查",
+        "description": "检查服务运行状态",
+        "tags": ["系统监控"],
+        "responses": {
+          "200": {
+            "description": "服务正常运行",
+            "content": {
+              "application/json": {
+                "example": {
+                  "status": "healthy",
+                  "timestamp": "2024-12-01T10:00:00Z",
+                  "version": "1.0.0"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/metrics": {
+      "get": {
+        "summary": "获取性能指标",
+        "description": "获取系统性能监控指标",
+        "tags": ["系统监控"],
+        "responses": {
+          "200": {
+            "description": "性能指标数据",
+            "content": {
+              "application/json": {
+                "example": {
+                  "metrics": {
+                    "total_requests": 1500,
+                    "successful_requests": 1450,
+                    "failed_requests": 50,
+                    "average_response_time": 120
+                  },
+                  "timestamp": "2024-12-01T10:00:00Z"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/metrics/reset": {
+      "post": {
+        "summary": "重置性能指标",
+        "description": "重置所有性能监控指标",
+        "tags": ["系统监控"],
+        "responses": {
+          "200": {
+            "description": "指标重置成功",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "指标已重置",
+                  "timestamp": "2024-12-01T10:00:00Z"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/file/scan": {
+      "post": {
+        "summary": "扫描单个文件",
+        "description": "使用 Yara 规则扫描指定文件",
+        "tags": ["文件管理"],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["path"],
+                "properties": {
+                  "path": {
+                    "type": "string",
+                    "description": "文件路径",
+                    "example": "C:\\test\\sample.exe"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "扫描完成",
+            "content": {
+              "application/json": {
+                "example": {
+                  "code": 200,
+                  "message": "扫描完成",
+                  "data": {
+                    "file_path": "C:\\test\\sample.exe",
+                    "is_suspicious": true,
+                    "threats": [
+                      {
+                        "rule_name": "malware_rule_001",
+                        "description": "检测到恶意软件特征",
+                        "severity": "high"
+                      }
+                    ],
+                    "scan_time": "2024-12-01T10:00:00Z",
+                    "scan_duration": 1.5
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/file/info/{path}": {
+      "get": {
+        "summary": "获取文件详细信息",
+        "description": "获取指定文件的详细属性信息",
+        "tags": ["文件管理"],
+        "parameters": [
+          {
+            "name": "path",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "文件路径（如果路径包含斜杠，请使用 fullPath 查询参数）",
+            "example": "notepad.exe"
+          },
+          {
+            "name": "fullPath",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "description": "完整文件路径（当路径参数不包含斜杠时使用）",
+            "example": "C:\\Windows\\System32\\notepad.exe"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "文件信息",
+            "content": {
+              "application/json": {
+                "example": {
+                  "code": 200,
+                  "message": "获取成功",
+                  "data": {
+                    "name": "notepad.exe",
+                    "size": 204800,
+                    "create_time": "2024-12-01T08:00:00Z",
+                    "modify_time": "2024-12-01T08:00:00Z",
+                    "permissions": "rw-r--r--",
+                    "owner": "SYSTEM"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/file/scan-directory": {
+      "post": {
+        "summary": "扫描目录",
+        "description": "扫描指定目录下的所有文件",
+        "tags": ["文件管理"],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["path"],
+                "properties": {
+                  "path": {
+                    "type": "string",
+                    "description": "目录路径",
+                    "example": "C:\\test"
+                  },
+                  "recursive": {
+                    "type": "boolean",
+                    "description": "是否递归扫描",
+                    "default": true
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "目录扫描完成",
+            "content": {
+              "application/json": {
+                "example": {
+                  "code": 200,
+                  "message": "目录扫描完成",
+                  "data": {
+                    "directory": "C:\\test",
+                    "total_files": 150,
+                    "scanned_files": 150,
+                    "suspicious_files": 3,
+                    "scan_time": "2024-12-01T10:00:00Z",
+                    "scan_duration": 45.2
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/file/scan-buffer": {
+      "post": {
+        "summary": "扫描内存缓冲区",
+        "description": "扫描内存中的缓冲区内容",
+        "tags": ["文件管理"],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["data"],
+                "properties": {
+                  "data": {
+                    "type": "string",
+                    "description": "Base64编码的缓冲区数据",
+                    "example": "SGVsbG8gV29ybGQ="
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "缓冲区扫描完成",
+            "content": {
+              "application/json": {
+                "example": {
+                  "code": 200,
+                  "message": "缓冲区扫描完成",
+                  "data": {
+                    "is_suspicious": false,
+                    "threats": [],
+                    "scan_time": "2024-12-01T10:00:00Z",
+                    "scan_duration": 0.1
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/file/list": {
+      "get": {
+        "summary": "获取文件列表",
+        "description": "获取指定目录下的文件列表",
+        "tags": ["文件管理"],
+        "parameters": [
+          {
+            "name": "path",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "目录路径",
+            "example": "C:\\test"
+          },
+          {
+            "name": "recursive",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            },
+            "description": "是否递归",
+            "default": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "文件列表",
+            "content": {
+              "application/json": {
+                "example": {
+                  "code": 200,
+                  "message": "获取成功",
+                  "data": {
+                    "files": [
+                      {
+                        "name": "test.txt",
+                        "path": "C:\\test\\test.txt",
+                        "size": 1024,
+                        "type": "file"
+                      }
+                    ],
+                    "total_count": 1
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/file/copy": {
+      "post": {
+        "summary": "复制文件",
+        "description": "复制文件到指定位置",
+        "tags": ["文件管理"],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["source", "dest"],
+                "properties": {
+                  "source": {
+                    "type": "string",
+                    "description": "源文件路径",
+                    "example": "C:\\source\\file.txt"
+                  },
+                  "dest": {
+                    "type": "string",
+                    "description": "目标文件路径",
+                    "example": "C:\\dest\\file.txt"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "文件复制成功",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "文件复制成功"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/file/move": {
+      "post": {
+        "summary": "移动文件",
+        "description": "移动文件到指定位置",
+        "tags": ["文件管理"],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["source", "dest"],
+                "properties": {
+                  "source": {
+                    "type": "string",
+                    "description": "源文件路径",
+                    "example": "C:\\source\\file.txt"
+                  },
+                  "dest": {
+                    "type": "string",
+                    "description": "目标文件路径",
+                    "example": "C:\\dest\\file.txt"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "文件移动成功",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "文件移动成功"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/file/{path}": {
+      "delete": {
+        "summary": "删除文件",
+        "description": "删除指定文件",
+        "tags": ["文件管理"],
+        "parameters": [
+          {
+            "name": "path",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "文件路径（如果路径包含斜杠，请使用 fullPath 查询参数）",
+            "example": "file.txt"
+          },
+          {
+            "name": "fullPath",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "description": "完整文件路径（当路径参数不包含斜杠时使用）",
+            "example": "C:\\test\\file.txt"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "文件删除成功",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "文件删除成功"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/file/hash/{path}": {
+      "get": {
+        "summary": "获取文件哈希值",
+        "description": "计算并返回文件的哈希值",
+        "tags": ["文件管理"],
+        "parameters": [
+          {
+            "name": "path",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "文件路径（如果路径包含斜杠，请使用 fullPath 查询参数）",
+            "example": "file.txt"
+          },
+          {
+            "name": "fullPath",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "description": "完整文件路径（当路径参数不包含斜杠时使用）",
+            "example": "C:\\test\\file.txt"
+          },
+          {
+            "name": "algorithm",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "哈希算法",
+            "default": "sha256",
+            "example": "sha256"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "文件哈希值",
+            "content": {
+              "application/json": {
+                "example": {
+                  "hash": "a94a8fe5ccb19ba61c4c0873d391e987982fbbd3",
+                  "algorithm": "sha256"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/file/hashes/{path}": {
+      "get": {
+        "summary": "获取文件所有哈希值",
+        "description": "计算并返回文件的所有哈希值（MD5、SHA1、SHA256）",
+        "tags": ["文件管理"],
+        "parameters": [
+          {
+            "name": "path",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "文件路径（如果路径包含斜杠，请使用 fullPath 查询参数）",
+            "example": "file.txt"
+          },
+          {
+            "name": "fullPath",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "description": "完整文件路径（当路径参数不包含斜杠时使用）",
+            "example": "C:\\test\\file.txt"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "文件哈希值列表",
+            "content": {
+              "application/json": {
+                "example": {
+                  "hashes": {
+                    "md5": "d41d8cd98f00b204e9800998ecf8427e",
+                    "sha1": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+                    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/file/verify-hash": {
+      "post": {
+        "summary": "验证文件哈希",
+        "description": "验证文件的哈希值是否匹配",
+        "tags": ["文件管理"],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["file_path", "algorithm", "expected_hash"],
+                "properties": {
+                  "file_path": {
+                    "type": "string",
+                    "description": "文件路径",
+                    "example": "C:\\test\\file.txt"
+                  },
+                  "algorithm": {
+                    "type": "string",
+                    "description": "哈希算法",
+                    "example": "sha256"
+                  },
+                  "expected_hash": {
+                    "type": "string",
+                    "description": "期望的哈希值",
+                    "example": "a94a8fe5ccb19ba61c4c0873d391e987982fbbd3"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "哈希验证结果",
+            "content": {
+              "application/json": {
+                "example": {
+                  "valid": true
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/process/list": {
+      "get": {
+        "summary": "获取进程列表",
+        "description": "获取系统当前运行的进程列表",
+        "tags": ["进程管理"],
+        "responses": {
+          "200": {
+            "description": "进程列表",
+            "content": {
+              "application/json": {
+                "example": {
+                  "code": 200,
+                  "message": "获取成功",
+                  "data": {
+                    "processes": [
+                      {
+                        "pid": 1234,
+                        "name": "chrome.exe",
+                        "cpu_percent": 5.2,
+                        "memory_percent": 15.8,
+                        "status": "running",
+                        "create_time": "2024-12-01T08:00:00Z"
+                      }
+                    ],
+                    "count": 150
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/process/{pid}": {
+      "get": {
+        "summary": "获取进程详细信息",
+        "description": "根据PID获取进程的详细信息",
+        "tags": ["进程管理"],
+        "parameters": [
+          {
+            "name": "pid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "description": "进程ID",
+            "example": 1234
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "进程详细信息",
+            "content": {
+              "application/json": {
+                "example": {
+                  "code": 200,
+                  "message": "获取成功",
+                  "data": {
+                    "pid": 1234,
+                    "name": "chrome.exe",
+                    "cpu_percent": 5.2,
+                    "memory_percent": 15.8,
+                    "status": "running",
+                    "create_time": "2024-12-01T08:00:00Z",
+                    "command_line": "chrome.exe --no-sandbox",
+                    "working_directory": "C:\\Program Files\\Google\\Chrome"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "结束进程",
+        "description": "根据PID结束指定进程",
+        "tags": ["进程管理"],
+        "parameters": [
+          {
+            "name": "pid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "description": "进程ID",
+            "example": 1234
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "进程已结束",
+            "content": {
+              "application/json": {
+                "example": {
+                  "code": 200,
+                  "message": "进程已结束"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/process/start": {
+      "post": {
+        "summary": "启动进程",
+        "description": "启动新的进程",
+        "tags": ["进程管理"],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["command"],
+                "properties": {
+                  "command": {
+                    "type": "string",
+                    "description": "命令",
+                    "example": "notepad.exe"
+                  },
+                  "args": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "命令行参数",
+                    "example": ["file.txt"]
+                  },
+                  "working_dir": {
+                    "type": "string",
+                    "description": "工作目录",
+                    "example": "C:\\temp"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "进程启动成功",
+            "content": {
+              "application/json": {
+                "example": {
+                  "code": 200,
+                  "message": "进程启动成功",
+                  "data": {
+                    "pid": 5678,
+                    "command": "notepad.exe",
+                    "start_time": "2024-12-01T10:00:00Z"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/process/{pid}/suspend": {
+      "put": {
+        "summary": "挂起进程",
+        "description": "挂起指定进程",
+        "tags": ["进程管理"],
+        "parameters": [
+          {
+            "name": "pid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "description": "进程ID",
+            "example": 1234
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "进程已挂起",
+            "content": {
+              "application/json": {
+                "example": {
+                  "code": 200,
+                  "message": "进程已挂起"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/process/{pid}/resume": {
+      "put": {
+        "summary": "恢复进程",
+        "description": "恢复挂起的进程",
+        "tags": ["进程管理"],
+        "parameters": [
+          {
+            "name": "pid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "description": "进程ID",
+            "example": 1234
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "进程已恢复",
+            "content": {
+              "application/json": {
+                "example": {
+                  "code": 200,
+                  "message": "进程已恢复"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/process/{pid}/modules": {
+      "get": {
+        "summary": "获取进程模块",
+        "description": "获取指定进程加载的模块列表",
+        "tags": ["进程管理"],
+        "parameters": [
+          {
+            "name": "pid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "description": "进程ID",
+            "example": 1234
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "进程模块列表",
+            "content": {
+              "application/json": {
+                "example": {
+                  "code": 200,
+                  "message": "获取成功",
+                  "data": {
+                    "modules": [
+                      {
+                        "name": "kernel32.dll",
+                        "path": "C:\\Windows\\System32\\kernel32.dll",
+                        "size": 2048000
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/process/{pid}/connections": {
+      "get": {
+        "summary": "获取进程网络连接",
+        "description": "获取指定进程的网络连接",
+        "tags": ["进程管理"],
+        "parameters": [
+          {
+            "name": "pid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "description": "进程ID",
+            "example": 1234
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "进程网络连接",
+            "content": {
+              "application/json": {
+                "example": {
+                  "code": 200,
+                  "message": "获取成功",
+                  "data": {
+                    "connections": [
+                      {
+                        "local_address": "192.168.1.100:8081",
+                        "remote_address": "10.0.0.1:443",
+                        "status": "ESTABLISHED",
+                        "type": "tcp"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/process/{pid}/memory": {
+      "get": {
+        "summary": "获取进程内存信息",
+        "description": "获取指定进程的内存使用情况",
+        "tags": ["进程管理"],
+        "parameters": [
+          {
+            "name": "pid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "description": "进程ID",
+            "example": 1234
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "进程内存信息",
+            "content": {
+              "application/json": {
+                "example": {
+                  "code": 200,
+                  "message": "获取成功",
+                  "data": {
+                    "rss": 52428800,
+                    "vms": 1073741824,
+                    "percent": 15.8
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/process/{pid}/running": {
+      "get": {
+        "summary": "检查进程运行状态",
+        "description": "检查指定进程是否正在运行",
+        "tags": ["进程管理"],
+        "parameters": [
+          {
+            "name": "pid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "description": "进程ID",
+            "example": 1234
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "进程运行状态",
+            "content": {
+              "application/json": {
+                "example": {
+                  "code": 200,
+                  "message": "获取成功",
+                  "data": {
+                    "running": true
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/process/{pid}/children": {
+      "get": {
+        "summary": "获取子进程",
+        "description": "获取指定进程的子进程列表",
+        "tags": ["进程管理"],
+        "parameters": [
+          {
+            "name": "pid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "description": "进程ID",
+            "example": 1234
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "子进程列表",
+            "content": {
+              "application/json": {
+                "example": {
+                  "code": 200,
+                  "message": "获取成功",
+                  "data": {
+                    "children": [
+                      {
+                        "pid": 5678,
+                        "name": "child.exe",
+                        "status": "running"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/process/module/list": {
+      "get": {
+        "summary": "获取系统模块列表",
+        "description": "获取系统加载的所有模块",
+        "tags": ["进程管理"],
+        "responses": {
+          "200": {
+            "description": "系统模块列表",
+            "content": {
+              "application/json": {
+                "example": {
+                  "code": 200,
+                  "message": "获取列表成功",
+                  "time": "2024-01-15T10:30:00Z",
+                  "data": {
+                    "data": [
+                      {
+                        "name": "kernel32.dll",
+                        "path": "C:\\Windows\\System32\\kernel32.dll",
+                        "size": 2048000,
+                        "process_count": 150
+                      }
+                    ],
+                    "count": 1
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/process/module/{module}": {
+      "get": {
+        "summary": "获取模块信息",
+        "description": "获取指定模块的详细信息",
+        "tags": ["进程管理"],
+        "parameters": [
+          {
+            "name": "module",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "模块名称（支持未编码与已编码，如：kernel32.dll 或 kernel32%2Edll）",
+            "example": "kernel32.dll"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "模块信息",
+            "content": {
+              "application/json": {
+                "example": {
+                  "code": 200,
+                  "message": "获取信息成功",
+                  "time": "2024-01-15T10:30:00Z",
+                  "data": {
+                    "name": "kernel32.dll",
+                    "path": "C:\\Windows\\System32\\kernel32.dll",
+                    "size": 2048000,
+                    "process_count": 150,
+                    "affected_processes": [1234, 5678]
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "结束模块",
+        "description": "结束指定模块",
+        "tags": ["进程管理"],
+        "parameters": [
+          {
+            "name": "module",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "模块名称（支持未编码与已编码，如：kernel32.dll 或 kernel32%2Edll）",
+            "example": "kernel32.dll"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "模块已结束",
+            "content": {
+              "application/json": {
+                "example": {
+                  "code": 200,
+                  "message": "结束系统模块成功",
+                  "time": "2024-01-15T10:30:00Z",
+                  "data": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/process/module/{module}/suspend": {
+      "put": {
+        "summary": "挂起模块",
+        "description": "挂起指定模块",
+        "tags": ["进程管理"],
+        "parameters": [
+          {
+            "name": "module",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "模块名称（支持未编码与已编码，如：kernel32.dll 或 kernel32%2Edll）",
+            "example": "kernel32.dll"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "模块已挂起",
+            "content": {
+              "application/json": {
+                "example": {
+                  "code": 200,
+                  "message": "挂起系统模块成功",
+                  "time": "2024-01-15T10:30:00Z",
+                  "data": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/process/module/{module}/resume": {
+      "put": {
+        "summary": "恢复模块",
+        "description": "恢复挂起的模块",
+        "tags": ["进程管理"],
+        "parameters": [
+          {
+            "name": "module",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "模块名称（支持未编码与已编码，如：kernel32.dll 或 kernel32%2Edll）",
+            "example": "kernel32.dll"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "模块已恢复",
+            "content": {
+              "application/json": {
+                "example": {
+                  "code": 200,
+                  "message": "恢复系统模块成功",
+                  "time": "2024-01-15T10:30:00Z",
+                  "data": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/process/monitoring/enable": {
+      "post": {
+        "summary": "启用进程监控",
+        "description": "启用进程监控功能",
+        "tags": ["进程管理"],
+        "responses": {
+          "200": {
+            "description": "进程监控已启用",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "进程监控已启用"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/process/monitoring/disable": {
+      "post": {
+        "summary": "禁用进程监控",
+        "description": "禁用进程监控功能",
+        "tags": ["进程管理"],
+        "responses": {
+          "200": {
+            "description": "进程监控已禁用",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "进程监控已禁用"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/process/monitoring/list": {
+      "get": {
+        "summary": "获取监控进程列表",
+        "description": "获取当前监控的进程列表",
+        "tags": ["进程管理"],
+        "responses": {
+          "200": {
+            "description": "监控进程列表",
+            "content": {
+              "application/json": {
+                "example": {
+                  "monitored_processes": [
+                    {
+                      "pid": 1234,
+                      "name": "chrome.exe",
+                      "monitor_start": "2024-12-01T08:00:00Z"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/process/statistics": {
+      "get": {
+        "summary": "获取进程统计信息",
+        "description": "获取进程相关的统计信息",
+        "tags": ["进程管理"],
+        "responses": {
+          "200": {
+            "description": "进程统计信息",
+            "content": {
+              "application/json": {
+                "example": {
+                  "total_processes": 150,
+                  "running_processes": 145,
+                  "suspended_processes": 5,
+                  "total_memory_usage": 8589934592
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/registry/key/{path}": {
+      "get": {
+        "summary": "获取注册表键信息",
+        "description": "获取指定注册表路径的键信息",
+        "tags": ["注册表管理"],
+        "parameters": [
+          {
+            "name": "path",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "注册表路径（如果路径包含斜杠，请使用 fullPath 查询参数）",
+            "example": "CurrentVersion"
+          },
+          {
+            "name": "fullPath",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "description": "完整注册表路径（当路径参数不包含斜杠时使用）",
+            "example": "SOFTWARE\\Microsoft\\Windows\\CurrentVersion"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "注册表键信息",
+            "content": {
+              "application/json": {
+                "example": {
+                  "code": 200,
+                  "message": "获取成功",
+                  "data": {
+                    "path": "SOFTWARE\\Microsoft\\Windows\\CurrentVersion",
+                    "subkeys": [
+                      {
+                        "name": "Run",
+                        "path": "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run"
+                      }
+                    ],
+                    "values": [
+                      {
+                        "name": "ProgramFilesDir",
+                        "type": "REG_SZ",
+                        "value": "C:\\Program Files"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "删除注册表键",
+        "description": "删除指定的注册表键",
+        "tags": ["注册表管理"],
+        "parameters": [
+          {
+            "name": "path",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "注册表路径（如果路径包含斜杠，请使用 fullPath 查询参数）",
+            "example": "TestKey"
+          },
+          {
+            "name": "fullPath",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "description": "完整注册表路径（当路径参数不包含斜杠时使用）",
+            "example": "SOFTWARE\\TestKey"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "注册表键删除成功",
+            "content": {
+              "application/json": {
+                "example": {
+                  "code": 200,
+                  "message": "注册表键删除成功"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/registry/key": {
+      "post": {
+        "summary": "创建注册表键",
+        "description": "创建新的注册表键",
+        "tags": ["注册表管理"],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["path"],
+                "properties": {
+                  "path": {
+                    "type": "string",
+                    "description": "注册表路径",
+                    "example": "SOFTWARE\\TestKey"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "注册表键创建成功",
+            "content": {
+              "application/json": {
+                "example": {
+                  "code": 200,
+                  "message": "注册表键创建成功"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/registry/value": {
+      "put": {
+        "summary": "设置注册表值",
+        "description": "设置注册表键的值",
+        "tags": ["注册表管理"],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["path", "name", "value", "type"],
+                "properties": {
+                  "path": {
+                    "type": "string",
+                    "description": "注册表路径",
+                    "example": "SOFTWARE\\TestKey"
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": "值名称",
+                    "example": "TestString"
+                  },
+                  "value": {
+                    "type": "string",
+                    "description": "值内容",
+                    "example": "TestValue"
+                  },
+                  "type": {
+                    "type": "string",
+                    "description": "值类型",
+                    "example": "REG_SZ"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "注册表值设置成功",
+            "content": {
+              "application/json": {
+                "example": {
+                  "code": 200,
+                  "message": "注册表值设置成功"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/registry/value/{path}": {
+      "get": {
+        "summary": "获取注册表值",
+        "description": "获取指定注册表路径和名称的值（名称通过查询参数 name 传入）",
+        "tags": ["注册表管理"],
+        "parameters": [
+          {
+            "name": "path",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "注册表路径（如果路径包含斜杠，请使用 fullPath 查询参数）",
+            "example": "CurrentVersion"
+          },
+          {
+            "name": "fullPath",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "description": "完整注册表路径（当路径参数不包含斜杠时使用）",
+            "example": "SOFTWARE\\Microsoft\\Windows\\CurrentVersion"
+          },
+          {
+            "name": "name",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "值名称",
+            "example": "ProgramFilesDir"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "注册表值",
+            "content": {
+              "application/json": {
+                "example": {
+                  "code": 200,
+                  "message": "获取成功",
+                  "data": {
+                    "name": "ProgramFilesDir",
+                    "type": "REG_SZ",
+                    "value": "C:\\Program Files"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "删除注册表值",
+        "description": "删除指定的注册表值（名称通过查询参数 name 传入）",
+        "tags": ["注册表管理"],
+        "parameters": [
+          {
+            "name": "path",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "注册表路径（如果路径包含斜杠，请使用 fullPath 查询参数）",
+            "example": "TestKey"
+          },
+          {
+            "name": "fullPath",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "description": "完整注册表路径（当路径参数不包含斜杠时使用）",
+            "example": "SOFTWARE\\TestKey"
+          },
+          {
+            "name": "name",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "值名称",
+            "example": "TestString"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "注册表值删除成功",
+            "content": {
+              "application/json": {
+                "example": {
+                  "code": 200,
+                  "message": "注册表值删除成功"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/registry/keys/{path}": {
+      "get": {
+        "summary": "列出注册表键",
+        "description": "列出指定注册表路径下的子键",
+        "tags": ["注册表管理"],
+        "parameters": [
+          {
+            "name": "path",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "注册表路径（如果路径包含斜杠，请使用 fullPath 查询参数）",
+            "example": "CurrentVersion"
+          },
+          {
+            "name": "fullPath",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "description": "完整注册表路径（当路径参数不包含斜杠时使用）",
+            "example": "SOFTWARE\\Microsoft\\Windows\\CurrentVersion"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "注册表键列表",
+            "content": {
+              "application/json": {
+                "example": {
+                  "code": 200,
+                  "message": "获取成功",
+                  "data": {
+                    "subkeys": [
+                      {
+                        "name": "Run",
+                        "path": "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/registry/values/{path}": {
+      "get": {
+        "summary": "列出注册表值",
+        "description": "列出指定注册表路径下的值",
+        "tags": ["注册表管理"],
+        "parameters": [
+          {
+            "name": "path",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "注册表路径（如果路径包含斜杠，请使用 fullPath 查询参数）",
+            "example": "CurrentVersion"
+          },
+          {
+            "name": "fullPath",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "description": "完整注册表路径（当路径参数不包含斜杠时使用）",
+            "example": "SOFTWARE\\Microsoft\\Windows\\CurrentVersion"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "注册表值列表",
+            "content": {
+              "application/json": {
+                "example": {
+                  "code": 200,
+                  "message": "获取成功",
+                  "data": {
+                    "values": [
+                      {
+                        "name": "ProgramFilesDir",
+                        "type": "REG_SZ",
+                        "value": "C:\\Program Files"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/registry/search": {
+      "post": {
+        "summary": "搜索注册表",
+        "description": "在注册表中搜索指定的内容",
+        "tags": ["注册表管理"],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["root"],
+                "properties": {
+                  "root": { "type": "string", "description": "根路径", "example": "SOFTWARE" },
+                  "pattern": { "type": "string", "description": "键名或值名匹配模式", "example": "Windows" },
+                  "value_pattern": { "type": "string", "description": "值内容匹配模式(可选)", "example": "ProgramFiles" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "搜索结果",
+            "content": {
+              "application/json": {
+                "example": {
+                  "code": 200,
+                  "message": "搜索完成",
+                  "data": {
+                    "results": [
+                      {
+                        "path": "SOFTWARE\\Microsoft\\Windows\\CurrentVersion",
+                        "name": "Windows",
+                        "type": "key"
+                      }
+                    ],
+                    "total_count": 1
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/network/connections": {
+      "get": {
+        "summary": "获取所有网络连接",
+        "description": "获取系统当前的所有网络连接",
+        "tags": ["网络管理"],
+        "responses": {
+          "200": {
+            "description": "网络连接列表",
+            "content": {
+              "application/json": {
+                "example": {
+                  "code": 200,
+                  "message": "获取成功",
+                  "data": {
+                    "connections": [
+                      {
+                        "id": "1234-tcp-0",
+                        "local_addr": "192.168.1.100",
+                        "remote_addr": "10.0.0.1",
+                        "local_port": 8081,
+                        "remote_port": 443,
+                        "protocol": "TCP",
+                        "status": "ESTABLISHED",
+                        "pid": 1234,
+                        "process_name": "nginx.exe",
+                        "type": "tcp"
+                      }
+                    ],
+                    "total_count": 50
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/network/connections/tcp": {
+      "get": {
+        "summary": "获取TCP连接",
+        "description": "获取系统当前的TCP连接",
+        "tags": ["网络管理"],
+        "responses": {
+          "200": {
+            "description": "TCP连接列表",
+            "content": {
+              "application/json": {
+                "example": {
+                  "code": 200,
+                  "message": "获取成功",
+                  "data": {
+                    "connections": [
+                      {
+                        "id": "1234-tcp-0",
+                        "local_addr": "192.168.1.100",
+                        "remote_addr": "10.0.0.1",
+                        "local_port": 8081,
+                        "remote_port": 443,
+                        "protocol": "TCP",
+                        "status": "ESTABLISHED",
+                        "pid": 1234,
+                        "process_name": "nginx.exe",
+                        "type": "tcp"
+                      }
+                    ],
+                    "total_count": 30
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/network/connections/udp": {
+      "get": {
+        "summary": "获取UDP连接",
+        "description": "获取系统当前的UDP连接",
+        "tags": ["网络管理"],
+        "responses": {
+          "200": {
+            "description": "UDP连接列表",
+            "content": {
+              "application/json": {
+                "example": {
+                  "code": 200,
+                  "message": "获取成功",
+                  "data": {
+                    "connections": [
+                      {
+                        "id": "5678-udp-0",
+                        "local_addr": "192.168.1.100",
+                        "remote_addr": "8.8.8.8",
+                        "local_port": 53,
+                        "remote_port": 53,
+                        "protocol": "UDP",
+                        "status": "ESTABLISHED",
+                        "pid": 5678,
+                        "process_name": "dns.exe",
+                        "type": "udp"
+                      }
+                    ],
+                    "total_count": 20
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/network/connections/pid/{pid}": {
+      "get": {
+        "summary": "按进程ID获取连接",
+        "description": "获取指定进程的网络连接",
+        "tags": ["网络管理"],
+        "parameters": [
+          {
+            "name": "pid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "description": "进程ID",
+            "example": 1234
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "进程网络连接",
+            "content": {
+              "application/json": {
+                "example": {
+                  "code": 200,
+                  "message": "获取成功",
+                  "data": {
+                    "connections": [
+                      {
+                        "id": "1234-tcp-0",
+                        "local_addr": "192.168.1.100",
+                        "remote_addr": "10.0.0.1",
+                        "local_port": 8081,
+                        "remote_port": 443,
+                        "protocol": "TCP",
+                        "status": "ESTABLISHED",
+                        "pid": 1234,
+                        "process_name": "nginx.exe",
+                        "type": "tcp"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/network/connections/port/{port}": {
+      "get": {
+        "summary": "按端口获取连接",
+        "description": "获取指定端口的网络连接",
+        "tags": ["网络管理"],
+        "parameters": [
+          {
+            "name": "port",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "description": "端口号",
+            "example": 8081
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "端口网络连接",
+            "content": {
+              "application/json": {
+                "example": {
+                  "code": 200,
+                  "message": "获取成功",
+                  "data": {
+                    "connections": [
+                      {
+                        "id": "1234-tcp-0",
+                        "local_addr": "192.168.1.100",
+                        "remote_addr": "10.0.0.1",
+                        "local_port": 8081,
+                        "remote_port": 443,
+                        "protocol": "TCP",
+                        "status": "ESTABLISHED",
+                        "pid": 1234,
+                        "process_name": "nginx.exe",
+                        "type": "tcp"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/network/connections/ip/{ip}": {
+      "get": {
+        "summary": "按IP地址获取连接",
+        "description": "获取指定IP地址的网络连接",
+        "tags": ["网络管理"],
+        "parameters": [
+          {
+            "name": "ip",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "IP地址",
+            "example": "127.0.0.1"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "IP网络连接",
+            "content": {
+              "application/json": {
+                "example": {
+                  "code": 200,
+                  "message": "获取成功",
+                  "data": {
+                    "connections": [
+                      {
+                        "id": "1234-tcp-0",
+                        "local_addr": "127.0.0.1",
+                        "remote_addr": "127.0.0.1",
+                        "local_port": 8081,
+                        "remote_port": 443,
+                        "protocol": "TCP",
+                        "status": "ESTABLISHED",
+                        "pid": 1234,
+                        "process_name": "nginx.exe",
+                        "type": "tcp"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/network/connection/{id}": {
+      "get": {
+        "summary": "根据连接ID获取连接信息",
+        "description": "根据连接ID获取特定的网络连接详细信息，支持显示所有匹配结果",
+        "tags": ["网络管理"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "连接ID（格式：PID-type-FD，如：1234-tcp-0）",
+            "example": "1234-tcp-0"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "连接详细信息列表",
+            "content": {
+              "application/json": {
+                "example": {
+                  "code": 200,
+                  "message": "获取成功",
+                  "data": {
+                    "connections": [
+                      {
+                        "id": "1234-tcp-0",
+                        "local_addr": "192.168.1.100",
+                        "remote_addr": "10.0.0.1",
+                        "local_port": 8081,
+                        "remote_port": 443,
+                        "protocol": "TCP",
+                        "status": "ESTABLISHED",
+                        "pid": 1234,
+                        "process_name": "nginx.exe",
+                        "type": "tcp"
+                      }
+                    ],
+                    "total_count": 1
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/network/connection/close": {
+      "post": {
+        "summary": "关闭网络连接",
+        "description": "根据连接ID或进程名称关闭网络连接",
+        "tags": ["网络管理"],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["connection_id"],
+                "properties": {
+                  "connection_id": { "type": "string", "description": "连接ID（格式：PID-type-FD）", "example": "1234-tcp-0" },
+                  "process_name": { "type": "string", "description": "进程名称（可选，当connection_id为空时使用）", "example": "nginx.exe" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "连接关闭成功",
+            "content": { "application/json": { "example": { "code": 200, "message": "连接关闭成功" } } }
+          }
+        }
+      }
+    },
+    "/api/v1/network/ports/in-use": {
+      "get": {
+        "summary": "获取正在使用的端口",
+        "description": "返回系统当前被占用的端口列表",
+        "tags": ["网络管理"],
+        "responses": {
+          "200": {
+            "description": "端口列表",
+            "content": { 
+              "application/json": { 
+                "example": { 
+                  "code": 200, 
+                  "message": "获取成功", 
+                  "data": { 
+                    "ports": [8081, 3306, 80, 443] 
+                  } 
+                } 
+              } 
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/network/port/{port}/in-use": {
+      "get": {
+        "summary": "检查指定端口是否被占用",
+        "description": "检查指定端口是否被系统进程占用",
+        "tags": ["网络管理"],
+        "parameters": [
+          {
+            "name": "port",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "description": "端口号",
+            "example": 8081
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "端口占用状态",
+            "content": {
+              "application/json": {
+                "example": {
+                  "code": 200,
+                  "message": "端口占用状态检查完成",
+                  "data": {
+                    "port": 8081,
+                    "in_use": true
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/network/listening-ports": {
+      "get": {
+        "summary": "获取监听端口",
+        "description": "获取系统当前监听的端口",
+        "tags": ["网络管理"],
+        "responses": {
+          "200": {
+            "description": "监听端口列表",
+            "content": {
+              "application/json": {
+                "example": {
+                  "code": 200,
+                  "message": "获取成功",
+                  "data": {
+                    "ports": [
+                      {
+                        "port": 8081,
+                        "protocol": "tcp",
+                        "process": "yara-security-service"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/network/established-connections": {
+      "get": {
+        "summary": "获取已建立连接",
+        "description": "获取系统当前已建立的连接",
+        "tags": ["网络管理"],
+        "responses": {
+          "200": {
+            "description": "已建立连接列表",
+            "content": {
+              "application/json": {
+                "example": {
+                  "code": 200,
+                  "message": "获取成功",
+                  "data": {
+                    "connections": [
+                      {
+                        "id": "1234-tcp-0",
+                        "local_addr": "192.168.1.100",
+                        "remote_addr": "10.0.0.1",
+                        "local_port": 8081,
+                        "remote_port": 443,
+                        "protocol": "TCP",
+                        "status": "ESTABLISHED",
+                        "pid": 1234,
+                        "process_name": "nginx.exe",
+                        "type": "tcp"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/network/interfaces": {
+      "get": {
+        "summary": "获取网络接口",
+        "description": "获取系统网络接口信息",
+        "tags": ["网络管理"],
+        "responses": {
+          "200": {
+            "description": "网络接口列表",
+            "content": {
+              "application/json": {
+                "example": {
+                  "code": 200,
+                  "message": "获取成功",
+                  "data": {
+                    "interfaces": [
+                      {
+                        "name": "eth0",
+                        "addresses": ["192.168.1.100"],
+                        "status": "up"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/network/stats": {
+      "get": {
+        "summary": "获取网络统计信息",
+        "description": "获取系统网络统计信息",
+        "tags": ["网络管理"],
+        "responses": {
+          "200": {
+            "description": "网络统计信息",
+            "content": {
+              "application/json": {
+                "example": {
+                  "code": 200,
+                  "message": "获取成功",
+                  "data": {
+                    "bytes_sent": 1024000,
+                    "bytes_recv": 2048000,
+                    "packets_sent": 1000,
+                    "packets_recv": 2000
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/network/monitoring/enable": {
+      "post": {
+        "summary": "启用网络监控",
+        "description": "启用网络连接监控功能，开始后台监控进程",
+        "tags": ["网络管理"],
+        "responses": {
+          "200": {
+            "description": "网络监控已启用",
+            "content": {
+              "application/json": {
+                "example": {
+                  "code": 200,
+                  "message": "网络监控已启用",
+                  "data": {
+                    "monitoring_status": "enabled",
+                    "enabled_time": "2024-12-01T10:00:00Z"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/network/monitoring/disable": {
+      "post": {
+        "summary": "禁用网络监控",
+        "description": "禁用网络连接监控功能，停止后台监控进程",
+        "tags": ["网络管理"],
+        "responses": {
+          "200": {
+            "description": "网络监控已禁用",
+            "content": {
+              "application/json": {
+                "example": {
+                  "code": 200,
+                  "message": "网络监控已禁用",
+                  "data": {
+                    "monitoring_status": "disabled",
+                    "disabled_time": "2024-12-01T10:00:00Z"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/network/monitoring/connections": {
+      "get": {
+        "summary": "获取监控连接",
+        "description": "获取当前监控的网络连接列表",
+        "tags": ["网络管理"],
+        "responses": {
+          "200": {
+            "description": "监控连接列表",
+            "content": {
+              "application/json": {
+                "example": {
+                  "code": 200,
+                  "message": "获取成功",
+                  "data": {
+                    "connections": [
+                      {
+                        "id": "1234-tcp-0",
+                        "local_addr": "192.168.1.100",
+                        "remote_addr": "10.0.0.1",
+                        "local_port": 8081,
+                        "remote_port": 443,
+                        "protocol": "TCP",
+                        "status": "ESTABLISHED",
+                        "pid": 1234,
+                        "process_name": "nginx.exe",
+                        "type": "tcp"
+                      }
+                    ],
+                    "total_count": 1
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/network/monitoring/history": {
+      "get": {
+        "summary": "获取连接历史",
+        "description": "获取网络连接历史记录",
+        "tags": ["网络管理"],
+        "responses": {
+          "200": {
+            "description": "连接历史记录",
+            "content": {
+              "application/json": {
+                "example": {
+                  "code": 200,
+                  "message": "获取成功",
+                  "data": {
+                    "connections": [
+                      {
+                        "id": "1234-tcp-0",
+                        "local_addr": "192.168.1.100",
+                        "remote_addr": "10.0.0.1",
+                        "local_port": 8081,
+                        "remote_port": 443,
+                        "protocol": "TCP",
+                        "status": "ESTABLISHED",
+                        "pid": 1234,
+                        "process_name": "nginx.exe",
+                        "type": "tcp"
+                      }
+                    ],
+                    "total_count": 1
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/security/status": {
+      "get": {
+        "summary": "获取安全状态",
+        "description": "获取系统安全状态信息",
+        "tags": ["安全扫描"],
+        "responses": {
+          "200": {
+            "description": "安全状态信息",
+            "content": {
+              "application/json": {
+                "example": {
+                  "code": 200,
+                  "message": "获取成功",
+                  "data": {
+                    "status": "secure",
+                    "rules_loaded": 150,
+                    "cache_size": 1024,
+                    "last_scan": "2024-12-01T10:00:00Z"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/security/rules": {
+      "get": {
+        "summary": "获取规则信息",
+        "description": "获取当前加载的安全规则信息",
+        "tags": ["安全扫描"],
+        "responses": {
+          "200": {
+            "description": "规则信息",
+            "content": {
+              "application/json": {
+                "example": {
+                  "code": 200,
+                  "message": "获取成功",
+                  "data": {
+                    "rules": [
+                      {
+                        "name": "malware_rule_001",
+                        "description": "恶意软件检测规则",
+                        "severity": "high"
+                      }
+                    ],
+                    "total_count": 150
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/security/reload-rules": {
+      "post": {
+        "summary": "重新加载规则",
+        "description": "重新加载安全扫描规则",
+        "tags": ["安全扫描"],
+        "responses": {
+          "200": {
+            "description": "规则重新加载成功",
+            "content": {
+              "application/json": {
+                "example": {
+                  "code": 200,
+                  "message": "规则重新加载成功"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/security/cache/clear": {
+      "post": {
+        "summary": "清空缓存",
+        "description": "清空安全扫描缓存",
+        "tags": ["安全扫描"],
+        "responses": {
+          "200": {
+            "description": "缓存清空成功",
+            "content": {
+              "application/json": {
+                "example": {
+                  "code": 200,
+                  "message": "缓存清空成功"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/security/cache/stats": {
+      "get": {
+        "summary": "获取缓存统计",
+        "description": "获取安全扫描缓存统计信息",
+        "tags": ["安全扫描"],
+        "responses": {
+          "200": {
+            "description": "缓存统计信息",
+            "content": {
+              "application/json": {
+                "example": {
+                  "code": 200,
+                  "message": "获取成功",
+                  "data": {
+                    "cache_size": 1024,
+                    "hit_rate": 0.85,
+                    "miss_rate": 0.15
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/security/quarantine": {
+      "post": {
+        "summary": "隔离文件",
+        "description": "将可疑文件移动到隔离区",
+        "tags": ["安全扫描"],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["file_path"],
+                "properties": {
+                  "file_path": {
+                    "type": "string",
+                    "description": "文件路径",
+                    "example": "C:\\test\\suspicious.exe"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "文件隔离成功",
+            "content": {
+              "application/json": {
+                "example": {
+                  "code": 200,
+                  "message": "文件隔离成功"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/security/restore": {
+      "post": {
+        "summary": "恢复文件",
+        "description": "从隔离区恢复文件",
+        "tags": ["安全扫描"],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["file_path"],
+                "properties": {
+                  "file_path": {
+                    "type": "string",
+                    "description": "文件路径",
+                    "example": "C:\\test\\suspicious.exe"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "文件恢复成功",
+            "content": {
+              "application/json": {
+                "example": {
+                  "code": 200,
+                  "message": "文件恢复成功"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/security/quarantine/list": {
+      "get": {
+        "summary": "获取隔离列表",
+        "description": "获取隔离区文件列表",
+        "tags": ["安全扫描"],
+        "responses": {
+          "200": {
+            "description": "隔离文件列表",
+            "content": {
+              "application/json": {
+                "example": {
+                  "code": 200,
+                  "message": "获取成功",
+                  "data": {
+                    "quarantined_files": [
+                      {
+                        "file_path": "C:\\test\\suspicious.exe",
+                        "quarantine_time": "2024-12-01T10:00:00Z",
+                        "reason": "恶意软件检测"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/security/scan-history": {
+      "get": {
+        "summary": "获取扫描历史",
+        "description": "获取安全扫描历史记录",
+        "tags": ["安全扫描"],
+        "responses": {
+          "200": {
+            "description": "扫描历史记录",
+            "content": {
+              "application/json": {
+                "example": {
+                  "code": 200,
+                  "message": "获取成功",
+                  "data": {
+                    "scan_history": [
+                      {
+                        "file_path": "C:\\test\\sample.exe",
+                        "scan_time": "2024-12-01T10:00:00Z",
+                        "result": "suspicious",
+                        "threats": ["malware_rule_001"]
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/user/current": {
+      "get": {
+        "summary": "获取当前用户",
+        "description": "获取当前登录用户信息",
+        "tags": ["用户管理"],
+        "responses": {
+          "200": {
+            "description": "当前用户信息",
+            "content": {
+              "application/json": {
+                "example": {
+                  "code": 200,
+                  "message": "获取成功",
+                  "data": {
+                    "username": "Administrator",
+                    "uid": "S-1-5-21-2079322416-3376148235-2999533130-1003",
+                    "groups": ["Administrators"]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/user/id/{uid}": {
+      "get": {
+        "summary": "根据用户ID获取用户信息",
+        "description": "根据用户ID获取用户详细信息",
+        "tags": ["用户管理"],
+        "parameters": [
+          {
+            "name": "uid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "用户ID",
+            "example": "S-1-5-21-2079322416-3376148235-2999533130-1003"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "用户信息",
+            "content": {
+              "application/json": {
+                "example": {
+                  "code": 200,
+                  "message": "获取成功",
+                  "data": {
+                    "username": "Administrator",
+                    "uid": "S-1-5-21-2079322416-3376148235-2999533130-1003",
+                    "groups": ["Administrators"],
+                    "status": "active"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/user/name/{username}": {
+      "get": {
+        "summary": "根据用户名获取用户信息",
+        "description": "根据用户名获取用户详细信息",
+        "tags": ["用户管理"],
+        "parameters": [
+          {
+            "name": "username",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "用户名",
+            "example": "Administrator"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "用户信息",
+            "content": {
+              "application/json": {
+                "example": {
+                  "code": 200,
+                  "message": "获取成功",
+                  "data": {
+                    "username": "Administrator",
+                    "uid": "S-1-5-21-2079322416-3376148235-2999533130-1003",
+                    "groups": ["Administrators"],
+                    "status": "active"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/user/all": {
+      "get": {
+        "summary": "获取所有用户",
+        "description": "获取系统所有用户列表",
+        "tags": ["用户管理"],
+        "responses": {
+          "200": {
+            "description": "用户列表",
+            "content": {
+              "application/json": {
+                "example": {
+                  "code": 200,
+                  "message": "获取成功",
+                  "data": {
+                    "users": [
+                      {
+                        "username": "Administrator",
+                        "uid": "S-1-5-21-2079322416-3376148235-2999533130-1003",
+                        "status": "active"
+                      }
+                    ],
+                    "total_count": 10
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/user/permissions/check": {
+      "post": {
+        "summary": "检查用户权限",
+        "description": "检查指定用户的权限",
+        "tags": ["用户管理"],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["username", "permission"],
+                "properties": {
+                  "username": {
+                    "type": "string",
+                    "description": "用户名",
+                    "example": "Administrator"
+                  },
+                  "permission": {
+                    "type": "string",
+                    "description": "权限名称",
+                    "example": "admin"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "权限检查结果",
+            "content": {
+              "application/json": {
+                "example": {
+                  "code": 200,
+                  "message": "检查完成",
+                  "data": {
+                    "username": "Administrator",
+                    "permission": "admin",
+                    "has_permission": true
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/user/password/validate": {
+      "post": {
+        "summary": "验证用户密码",
+        "description": "验证用户密码是否符合安全策略",
+        "tags": ["用户管理"],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["username", "password"],
+                "properties": {
+                  "username": {
+                    "type": "string",
+                    "description": "用户名",
+                    "example": "testuser"
+                  },
+                  "password": {
+                    "type": "string",
+                    "description": "密码",
+                    "example": "TestPassword123!"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "密码验证结果",
+            "content": {
+              "application/json": {
+                "example": {
+                  "code": 200,
+                  "message": "验证完成",
+                  "data": {
+                    "valid": true,
+                    "strength": "strong"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/user/password/policy": {
+      "get": {
+        "summary": "获取密码策略",
+        "description": "获取系统密码策略信息",
+        "tags": ["用户管理"],
+        "responses": {
+          "200": {
+            "description": "密码策略信息",
+            "content": {
+              "application/json": {
+                "example": {
+                  "code": 200,
+                  "message": "获取成功",
+                  "data": {
+                    "min_length": 8,
+                    "require_uppercase": true,
+                    "require_lowercase": true,
+                    "require_numbers": true,
+                    "require_special_chars": true
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/user/status/{username}": {
+      "get": {
+        "summary": "检查账户状态",
+        "description": "检查指定用户账户的状态",
+        "tags": ["用户管理"],
+        "parameters": [
+          {
+            "name": "username",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "用户名",
+            "example": "testuser"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "账户状态",
+            "content": {
+              "application/json": {
+                "example": {
+                  "code": 200,
+                  "message": "获取成功",
+                  "data": {
+                    "username": "testuser",
+                    "status": "active",
+                    "locked": false,
+                    "last_login": "2024-12-01T08:00:00Z"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/user/sessions/{username}": {
+      "get": {
+        "summary": "获取用户会话",
+        "description": "获取指定用户的会话信息",
+        "tags": ["用户管理"],
+        "parameters": [
+          {
+            "name": "username",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "用户名",
+            "example": "testuser"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "用户会话信息",
+            "content": {
+              "application/json": {
+                "example": {
+                  "code": 200,
+                  "message": "获取成功",
+                  "data": {
+                    "sessions": [
+                      {
+                        "session_id": "session_001",
+                        "login_time": "2024-12-01T08:00:00Z",
+                        "ip_address": "192.168.1.100"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/user/session/{sessionId}": {
+      "delete": {
+        "summary": "结束用户会话",
+        "description": "结束指定的用户会话",
+        "tags": ["用户管理"],
+        "parameters": [
+          {
+            "name": "sessionId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "会话ID",
+            "example": "session_001"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "会话结束成功",
+            "content": {
+              "application/json": {
+                "example": {
+                  "code": 200,
+                  "message": "会话结束成功"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/user/lock/{username}": {
+      "post": {
+        "summary": "锁定用户账户",
+        "description": "锁定指定的用户账户",
+        "tags": ["用户管理"],
+        "parameters": [
+          {
+            "name": "username",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "用户名",
+            "example": "testuser"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "账户锁定成功",
+            "content": {
+              "application/json": {
+                "example": {
+                  "code": 200,
+                  "message": "账户锁定成功"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/user/unlock/{username}": {
+      "post": {
+        "summary": "解锁用户账户",
+        "description": "解锁指定的用户账户",
+        "tags": ["用户管理"],
+        "parameters": [
+          {
+            "name": "username",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "用户名",
+            "example": "testuser"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "账户解锁成功",
+            "content": {
+              "application/json": {
+                "example": {
+                  "code": 200,
+                  "message": "账户解锁成功"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/user/password/change": {
+      "post": {
+        "summary": "修改用户密码",
+        "description": "修改指定用户的密码",
+        "tags": ["用户管理"],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["username", "new_password"],
+                "properties": {
+                  "username": {
+                    "type": "string",
+                    "description": "用户名",
+                    "example": "testuser"
+                  },
+                  "new_password": {
+                    "type": "string",
+                    "description": "新密码",
+                    "example": "NewPassword123!"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "密码修改成功",
+            "content": {
+              "application/json": {
+                "example": {
+                  "code": 200,
+                  "message": "密码修改成功"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/user/groups/{username}": {
+      "get": {
+        "summary": "获取用户组",
+        "description": "获取指定用户所属的组",
+        "tags": ["用户管理"],
+        "parameters": [
+          {
+            "name": "username",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "用户名",
+            "example": "testuser"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "用户组信息",
+            "content": {
+              "application/json": {
+                "example": {
+                  "code": 200,
+                  "message": "获取成功",
+                  "data": {
+                    "groups": [
+                      {
+                        "name": "Users",
+                        "description": "普通用户组"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/user/history/{username}": {
+      "get": {
+        "summary": "获取用户登录历史",
+        "description": "获取指定用户的登录历史记录",
+        "tags": ["用户管理"],
+        "parameters": [
+          {
+            "name": "username",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "用户名",
+            "example": "testuser"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "登录历史记录",
+            "content": {
+              "application/json": {
+                "example": {
+                  "code": 200,
+                  "message": "获取成功",
+                  "data": {
+                    "login_history": [
+                      {
+                        "login_time": "2024-12-01T08:00:00Z",
+                        "ip_address": "192.168.1.100",
+                        "status": "success"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/registry/value/{path}/{name}": {
+      "get": {
+        "summary": "获取注册表值（路径参数）",
+        "description": "获取指定注册表路径和名称的值（名称通过路径参数传入）",
+        "tags": ["注册表管理"],
+        "parameters": [
+          {
+            "name": "path",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "注册表路径（如果路径包含斜杠，请使用 fullPath 查询参数）",
+            "example": "CurrentVersion"
+          },
+          {
+            "name": "fullPath",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "description": "完整注册表路径（当路径参数不包含斜杠时使用）",
+            "example": "SOFTWARE\\Microsoft\\Windows\\CurrentVersion"
+          },
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "值名称",
+            "example": "ProgramFilesDir"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "注册表值",
+            "content": {
+              "application/json": {
+                "example": {
+                  "code": 200,
+                  "message": "获取成功",
+                  "data": {
+                    "name": "ProgramFilesDir",
+                    "type": "REG_SZ",
+                    "value": "C:\\Program Files"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "删除注册表值（路径参数）",
+        "description": "删除指定的注册表值（名称通过路径参数传入）",
+        "tags": ["注册表管理"],
+        "parameters": [
+          {
+            "name": "path",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "注册表路径（如果路径包含斜杠，请使用 fullPath 查询参数）",
+            "example": "TestKey"
+          },
+          {
+            "name": "fullPath",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "description": "完整注册表路径（当路径参数不包含斜杠时使用）",
+            "example": "SOFTWARE\\TestKey"
+          },
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "值名称",
+            "example": "TestString"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "注册表值删除成功",
+            "content": {
+              "application/json": {
+                "example": {
+                  "code": 200,
+                  "message": "注册表值删除成功"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "tags": [
+      {
+        "name": "系统监控",
+        "description": "系统健康检查和性能监控相关接口"
+      },
+      {
+        "name": "文件管理",
+        "description": "文件扫描、文件操作等文件管理相关接口"
+      },
+      {
+        "name": "进程管理",
+        "description": "进程列表、进程控制等进程管理相关接口"
+      },
+      {
+        "name": "注册表管理",
+        "description": "注册表项遍历、值读写等注册表操作相关接口"
+      },
+      {
+        "name": "网络管理",
+        "description": "网络连接查看、连接关闭等网络管理相关接口"
+      },
+      {
+        "name": "安全扫描",
+        "description": "文件扫描、网络流扫描等安全检测相关接口"
+      },
+      {
+        "name": "用户管理",
+        "description": "用户权限检查、密码验证等用户管理相关接口"
+      }
+    ]
+  }
+}

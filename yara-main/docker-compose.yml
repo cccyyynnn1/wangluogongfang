@@ -1,0 +1,64 @@
+version: '3.8'
+
+services:
+  yara-security-service:
+    build: .
+    container_name: yara-security-service
+    ports:
+      - "8081:8081"
+      - "3001:3001"
+    volumes:
+      - ./configs:/app/configs
+      - ./rules:/app/rules
+      - ./logs:/app/logs
+      - ./web:/app/web
+      # 挂载系统目录以进行扫描（需要谨慎使用）
+      - /var/log:/host/var/log:ro
+      - /tmp:/host/tmp:ro
+    environment:
+      - TZ=Asia/Shanghai
+    restart: unless-stopped
+    networks:
+      - yara-network
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:8081/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # 可选：添加Redis用于缓存
+  redis:
+    image: redis:7-alpine
+    container_name: yara-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    restart: unless-stopped
+    networks:
+      - yara-network
+
+  # 可选：添加Nginx作为反向代理
+  nginx:
+    image: nginx:alpine
+    container_name: yara-nginx
+    ports:
+      - "80:80"
+      - "443:443"
+      - "3001:3001"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./ssl:/etc/nginx/ssl:ro
+    depends_on:
+      - yara-security-service
+    restart: unless-stopped
+    networks:
+      - yara-network
+
+volumes:
+  redis-data:
+
+networks:
+  yara-network:
+    driver: bridge 

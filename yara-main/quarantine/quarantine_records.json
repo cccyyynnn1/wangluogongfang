@@ -1,0 +1,9 @@
+[
+  {
+    "file_path": "D:\\code\\Go\\Yara\\quarantine\\ceshi.exe_1754792755_quarantined",
+    "original_path": "C:\\temp\\test\\ceshi.exe",
+    "quarantine_time": "2025-08-10T10:25:55.3344294+08:00",
+    "reason": "检测到恶意软件",
+    "status": "quarantined"
+  }
+]

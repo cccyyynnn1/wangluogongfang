@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yara API 控制台</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1><i class="fas fa-network-wired"></i> Yara API 控制台</h1>
+            <p class="subtitle">便捷调用后端 API 以进行功能测试（文件、网络、进程、注册表、安全、用户）</p>
+        </header>
+
+        <main class="main-content">
+            <div class="input-method-selector" style="flex-wrap:wrap;">
+                <button class="method-btn active" data-panel="file-panel"><i class="fas fa-file"></i> 文件</button>
+                <button class="method-btn" data-panel="network-panel"><i class="fas fa-network-wired"></i> 网络</button>
+                <button class="method-btn" data-panel="process-panel"><i class="fas fa-tasks"></i> 进程</button>
+                <button class="method-btn" data-panel="registry-panel"><i class="fas fa-database"></i> 注册表</button>
+                <button class="method-btn" data-panel="security-panel"><i class="fas fa-shield-alt"></i> 安全</button>
+                <button class="method-btn" data-panel="user-panel"><i class="fas fa-user"></i> 用户</button>
+                <div style="flex:1"></div>
+                <label style="display:flex;align-items:center;gap:8px;color:#555;">API 基础 URL: <input id="base-url" value="/api/v1" style="margin-left:8px;padding:6px;border-radius:6px;border:1px solid #e0e0e0;width:220px"></label>
+            </div>
+
+            <!-- 文件面板 -->
+            <section id="file-panel" class="panel">
+                <h3>文件扫描与操作</h3>
+                <div class="input-group">
+                    <label>选择本地文件 (multipart/form-data)：</label>
+                    <input type="file" id="file-scan-input">
+                </div>
+                <div class="input-group">
+                    <button class="detect-btn" id="btn-file-scan"><i class="fas fa-search"></i> 上传并扫描</button>
+                    <button class="action-btn" id="btn-get-file-list">获取文件列表</button>
+                </div>
+                <div class="input-group">
+                    <label>路径查询（用于 info/hash/delete）：</label>
+                    <input id="file-path" placeholder="例如 C:\\path\\to\\file.exe" style="width:100%;padding:10px;border-radius:8px;border:1px solid #e0e0e0">
+                </div>
+                <div class="input-group">
+                    <button class="action-btn" id="btn-file-info">获取文件信息</button>
+                    <button class="action-btn" id="btn-file-hash">获取文件哈希</button>
+                    <button class="action-btn secondary" id="btn-file-delete">删除文件</button>
+                </div>
+            </section>
+
+            <!-- 网络面板 -->
+            <section id="network-panel" class="panel hidden">
+                <h3>网络</h3>
+                <div class="input-group">
+                    <button class="action-btn" id="btn-net-conns">获取全部连接</button>
+                    <button class="action-btn" id="btn-net-stats">获取网络统计</button>
+                    <button class="action-btn secondary" id="btn-listening-ports">获取监听端口</button>
+                </div>
+                <div class="input-group">
+                    <label>按 PID 查询连接：</label>
+                    <input id="net-pid" placeholder="例如 1234" style="padding:8px;border-radius:6px;border:1px solid #e0e0e0">
+                    <button class="action-btn" id="btn-net-by-pid">查询</button>
+                </div>
+            </section>
+
+            <!-- 进程面板 -->
+            <section id="process-panel" class="panel hidden">
+                <h3>进程管理</h3>
+                <div class="input-group">
+                    <button class="action-btn" id="btn-process-list">获取进程列表</button>
+                </div>
+                <div class="input-group">
+                    <label>启动进程 (JSON body)：</label>
+                    <input id="proc-cmd" placeholder="命令，例如: C:\\Windows\\notepad.exe" style="width:100%;padding:8px;border-radius:6px;border:1px solid #e0e0e0">
+                    <input id="proc-args" placeholder="参数，逗号分隔，例如: file.txt" style="width:100%;padding:8px;margin-top:8px;border-radius:6px;border:1px solid #e0e0e0">
+                    <button class="action-btn" id="btn-proc-start">启动</button>
+                </div>
+            </section>
+
+            <!-- 注册表面板 -->
+            <section id="registry-panel" class="panel hidden">
+                <h3>注册表</h3>
+                <div class="input-group">
+                    <label>键路径 (path)：</label>
+                    <input id="reg-path" placeholder="例如 HKLM\\SOFTWARE\\Microsoft" style="width:100%;padding:8px;border-radius:6px;border:1px solid #e0e0e0">
+                </div>
+                <div class="input-group">
+                    <button class="action-btn" id="btn-reg-keys">列出键</button>
+                    <button class="action-btn" id="btn-reg-values">列出值</button>
+                    <button class="action-btn secondary" id="btn-reg-search">搜索注册表</button>
+                </div>
+            </section>
+
+            <!-- 安全面板 -->
+            <section id="security-panel" class="panel hidden">
+                <h3>安全扫描 / YARA</h3>
+                <div class="input-group">
+                    <label>上传要扫描的文件：</label>
+                    <input type="file" id="sec-file-input">
+                </div>
+                <div class="input-group">
+                    <button class="detect-btn" id="btn-sec-scan"><i class="fas fa-shield-alt"></i> 扫描</button>
+                    <button class="action-btn" id="btn-get-rules">获取规则列表</button>
+                    <button class="action-btn secondary" id="btn-scan-history">扫描历史</button>
+                </div>
+            </section>
+
+            <!-- 用户面板 -->
+            <section id="user-panel" class="panel hidden">
+                <h3>用户</h3>
+                <div class="input-group">
+                    <button class="action-btn" id="btn-user-current">当前用户</button>
+                    <button class="action-btn" id="btn-user-all">所有用户</button>
+                </div>
+                <div class="input-group">
+                    <label>按用户名获取历史：</label>
+                    <input id="user-name" placeholder="用户名" style="padding:8px;border-radius:6px;border:1px solid #e0e0e0">
+                    <button class="action-btn" id="btn-user-history">查询</button>
+                </div>
+            </section>
+
+            <div class="results-section hidden" id="api-results">
+                <div class="results-header">
+                    <h2><i class="fas fa-terminal"></i> 响应</h2>
+                    <div class="results-stats" id="api-stats"></div>
+                </div>
+                <pre id="api-response" style="background:#f8f9fa;padding:15px;border-radius:8px;max-height:400px;overflow:auto"></pre>
+                <div class="results-actions" style="margin-top:12px">
+                    <button class="action-btn" id="btn-copy-response">复制结果</button>
+                    <button class="action-btn secondary" id="btn-clear-response">清空</button>
+                </div>
+            </div>
+
+            <div class="error-message hidden" id="api-error"><i class="fas fa-exclamation-triangle"></i> <span id="api-error-text"></span> <button class="close-error" id="api-error-close"><i class="fas fa-times"></i></button></div>
+        </main>
+
+        <footer class="footer">
+            <p>&copy; 2025 Yara API 控制台</p>
+        </footer>
+    </div>
+
+    <script src="api_console.js"></script>
+</body>
+</html>

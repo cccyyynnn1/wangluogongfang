@@ -1,0 +1,64 @@
+server:
+  port: 8081
+  host: "127.0.0.1"
+  read_timeout: 30s
+  write_timeout: 30s
+
+logging:
+  level: "info"
+  format: "json"
+  output: "stdout"
+
+security:
+  yara_rules_path: "./rules"
+  max_file_size: 100MB
+  scan_timeout: 60s
+  enable_real_time: true
+  api_key_required: false
+  api_key: ""
+  allowed_ips: []
+
+file:
+  max_scan_depth: 10
+  exclude_patterns:
+    - "*.tmp"
+    - "*.log"
+    - "*.cache"
+  include_extensions:
+    - ".exe"
+    - ".dll"
+    - ".sys"
+    - ".bat"
+    - ".cmd"
+    - ".ps1"
+    - ".vbs"
+    - ".js"
+
+process:
+  max_process_count: 1000
+  refresh_interval: 5s
+
+registry:
+  max_key_length: 256
+  max_value_size: 1MB
+
+network:
+  connection_timeout: 30s
+  max_connections: 1000
+
+cors:
+  allowed_origins:
+    - "*"
+  allowed_methods:
+    - "GET"
+    - "POST"
+    - "PUT"
+    - "DELETE"
+  allowed_headers:
+    - "Content-Type"
+    - "Authorization"
+
+rate_limit:
+  requests_per_minute: 60
+  burst_size: 10
+  window_size: 60s 
